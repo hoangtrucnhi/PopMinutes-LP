@@ -311,13 +311,13 @@
     </style>
 </head>
 <body>
-<nav>
+<nav class="nav-mini">
     <a href="#features">Nỗi đau</a>
     <a href="#how">Giải pháp</a>
     <a href="#pricing">Bảng giá</a>
 </nav>
 <!-- Hero -->
-<section>
+<section class="reveal">
                  Đã có mặt 100+ chỗ ngồi Cafe
             <h1>
                 Chốt Sales tại quán, <br>Biên bản để AI lo.
@@ -339,7 +339,7 @@
                 <p>Tóm tắt buổi làm việc</p>
 </section>
 <!-- Features -->
-<section id="features">
+<section id="features" class="reveal">
             Tại sao chọn PopMinutes
             <h2>
                 Đừng để buổi gặp khách chỉ là <br>một buổi nói chuyện rồi quên.
@@ -356,7 +356,7 @@
                 <p>Bạn vừa rời quán, trên đường trở về công ty, tóm tắt đã gửi đến email cá nhân và sếp/khách (tùy chọn). Không cần phải nhớ follow‑up. Tiết kiệm thời gian để chuẩn bị cho buổi gặp khác.</p>
 </section>
 <!-- Solutions -->
-<section id="how">
+<section id="how" class="reveal">
         <h2>Các giải pháp trong PopMinutes App</h2>
                     Giải pháp 01
                     <h3>AI chuyển toàn bộ file ghi âm thành biên bản</h3>
@@ -369,7 +369,7 @@
                     <p>Hệ thống <strong>quán</strong> với app check-in/check-out minh bạch.</p>
 </section>
 <!-- Pricing -->
-<section id="pricing">
+<section id="pricing" class="reveal">
             Bảng giá chi tiết
             <h2>Đầu tư vào sự Hiệu quả</h2>
             <p>Không phí khởi tạo. Chọn gói phù hợp với quy mô.</p>
@@ -437,7 +437,7 @@
                 <button onclick="openPricingModal('Cao cấp')">LIÊN HỆ NGAY</button>
 </section>
 <!-- CTA Form -->
-<section id="ctaSection">
+<section id="ctaSection" class="reveal">
                 <h2>Sẵn sàng để<br>tăng trưởng 3.7x doanh số?</h2>
                 <p>
                     Để lại thông tin của bạn. Đội ngũ <strong>PopHubly</strong> sẽ liên hệ để setup bản Demo miễn phí và tặng bạn voucher trải nghiệm PopMinutes AI đầu tiên.
@@ -465,7 +465,7 @@
             </form>
 </section>
 <!-- Newsletter Form -->
-<section>
+<section class="reveal">
         <h2>Bạn muốn nâng tầm đội ngũ Sales?</h2>
         <p>Đăng ký nhận email để cập nhật tính năng mới nhất từ PopMinutes App và các cẩm nang Sales.</p>
         <form id="newsletterForm" novalidate>
