@@ -54,17 +54,18 @@
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
-            background-color: #fff !important;
-            color: var(--text) !important;
-            overflow-x: hidden;
-            min-height: 100vh;
-            max-width: 100vw;
-            margin: 0;
-            padding: 0;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
+    font-family: 'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
+    background-color: #fff !important;
+    color: var(--text) !important;
+    overflow-x: hidden;
+    min-height: 100vh;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 
         ::selection { background: var(--navy); color: #fff; }
 
@@ -589,6 +590,37 @@
             font-size: 0.8rem;
             letter-spacing: 0.02em;
             color: #fff;
+        }
+                /* ===== Force sections full-width ===== */
+        html, body {
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        section {
+            width: 100%;
+            max-width: 100%;
+            margin-left: 0;
+            margin-right: 0;
+            box-sizing: border-box;
+        }
+        section.section-dark,
+        section.section-light,
+        section.section-white {
+            width: 100vw;
+            max-width: 100vw;
+            margin-left: calc(50% - 50vw);
+            margin-right: calc(50% - 50vw);
+            box-sizing: border-box;
+        }
+        /* Riêng section có mx-* (Newsletter) không cần force */
+        section.mx-3, section.mx-4, section.mx-10 {
+            width: auto;
+            max-width: none;
+            margin-left: revert;
+            margin-right: revert;
         }
     </style>
 </head>
