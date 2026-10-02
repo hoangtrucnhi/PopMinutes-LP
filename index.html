@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="color-scheme" content="light only">
     <title>PopMinutes — Sales Meeting Intelligence</title>
-    <link rel="manifest" href="./manifest.json">
-    <meta name="theme-color" content="#1B2B7A">
     <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/hoangtrucnhi/PopMinutes-PWA/refs/heads/main/launchericon-512x512.png">
     <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/hoangtrucnhi/PopMinutes-PWA/refs/heads/main/launchericon-512x512.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,69 +30,6 @@
                 }
             }
         }
-            // ================= PWA INSTALL PROMPT =================
-    let deferredPrompt = null;
-    const installBtn = document.querySelector('.nav-download-btn');
-
-    // 1. Bắt sự kiện trước khi trình duyệt hiện prompt
-    window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
-        console.log('✅ PWA install available');
-    });
-
-    // 2. Xử lý khi user bấm nút "Tải app"
-    if (installBtn) {
-        installBtn.addEventListener('click', async (e) => {
-            e.preventDefault();
-
-            // Nếu trình duyệt hỗ trợ (Chrome/Edge trên Android/Desktop)
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                const { outcome } = await deferredPrompt.userChoice;
-                console.log('User choice:', outcome);
-                
-                if (outcome === 'accepted') {
-                    deferredPrompt = null;
-                    installBtn.style.opacity = '0.5';
-                    installBtn.style.pointerEvents = 'none';
-                    setTimeout(() => {
-                        installBtn.style.opacity = '';
-                        installBtn.style.pointerEvents = '';
-                    }, 3000);
-                }
-                return;
-            }
-
-            // Fallback cho iOS Safari (không hỗ trợ beforeinstallprompt)
-            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-            if (isIOS) {
-                alert(
-                    '📱 Để cài PopMinutes trên iPhone/iPad:\n\n' +
-                    '1. Bấm biểu tượng Chia sẻ (khung vuông có mũi tên ↑) trên Safari\n' +
-                    '2. Chọn "Thêm vào màn hình chính"\n' +
-                    '3. Bấm "Thêm" để hoàn tất'
-                );
-                return;
-            }
-
-            // Fallback cho trình duyệt khác không hỗ trợ
-            alert(
-                '📱 Để cài PopMinutes:\n\n' +
-                '• Trên Chrome/Edge: Bấm menu (⋮) → "Install app" hoặc "Cài đặt ứng dụng"\n' +
-                '• Trên Safari (iOS): Bấm Chia sẻ → "Thêm vào màn hình chính"'
-            );
-        });
-    }
-
-    // 3. Đăng ký Service Worker
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('./sw.js')
-                .then(reg => console.log('✅ SW registered:', reg.scope))
-                .catch(err => console.warn('⚠️ SW register failed:', err));
-        });
-    }
     </script>
     <style>
         :root {
@@ -1242,7 +1177,7 @@
             <a href="#how">Giải pháp</a>
             <a href="#pricing">Bảng giá</a>
         </div>
-        <a href="#" class="nav-download-btn">
+        <a href="https://hoangtrucnhi.github.io/PopMinutes-Update/" target="_blank" rel="noopener" class="nav-download-btn">
             <i class="fa-solid fa-download"></i>
             <span>Tải app</span>
         </a>
