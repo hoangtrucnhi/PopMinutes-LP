@@ -1411,22 +1411,22 @@
                 </div>
             </div>
             <form id="ctaForm" class="space-y-4 sm:space-y-5" novalidate>
-                <input type="text" id="ctaName" placeholder="Họ và tên của bạn *" class="input-elegant" required>
-                <input type="email" id="ctaEmail" placeholder="Email công việc *" class="input-elegant" required>
-                <input type="tel" id="ctaPhone" placeholder="Số điện thoại của bạn *" class="input-elegant" required>
-                <textarea id="ctaNote" placeholder="Ghi chú thêm cho chúng tôi..." rows="4" class="input-elegant resize-none"></textarea>
-                <input type="hidden" id="ctaRef" name="ref" value="">
-                <div class="consent-wrapper">
-                    <input type="checkbox" id="ctaConsent" name="consent" required class="consent-checkbox">
-                    <label for="ctaConsent" class="consent-label">
-                        Tôi đồng ý với 
-                        <a href="https://pophubly.com/pophubly-privacy-policy/" target="_blank" class="consent-link">Chính sách bảo mật</a> 
-                        và 
-                        <a href="https://pophubly.com/term-of-use/" target="_blank" class="consent-link">Điều khoản sử dụng</a>.
-                    </label>
-                </div>
-                <button type="submit" id="ctaSubmitBtn" class="btn-main w-full py-4 sm:py-5 text-base sm:text-lg mt-2">DÙNG THỬ 14 NGÀY</button>
-            </form>
+    <input type="text" id="ctaName" name="name" placeholder="Họ và tên của bạn *" class="input-elegant" required>
+    <input type="email" id="ctaEmail" name="email" placeholder="Email công việc *" class="input-elegant" required>
+    <input type="tel" id="ctaPhone" name="phone" placeholder="Số điện thoại của bạn *" class="input-elegant" required>
+    <textarea id="ctaNote" name="note" placeholder="Ghi chú thêm cho chúng tôi..." rows="4" class="input-elegant resize-none"></textarea>
+    <input type="hidden" id="ctaRef" name="ref" value="">
+    <div class="consent-wrapper">
+        <input type="checkbox" id="ctaConsent" name="consent" required class="consent-checkbox">
+        <label for="ctaConsent" class="consent-label">
+            Tôi đồng ý với 
+            <a href="https://pophubly.com/pophubly-privacy-policy/" target="_blank" class="consent-link">Chính sách bảo mật</a> 
+            và 
+            <a href="https://pophubly.com/term-of-use/" target="_blank" class="consent-link">Điều khoản sử dụng</a>.
+        </label>
+    </div>
+    <button type="submit" id="ctaSubmitBtn" class="btn-main w-full py-4 sm:py-5 text-base sm:text-lg mt-2">DÙNG THỬ 14 NGÀY</button>
+</form>
         </div>
     </div>
 </section>
@@ -1439,9 +1439,9 @@
         <h2 class="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4 sm:mb-6">Bạn muốn nâng tầm đội ngũ Sales?</h2>
         <p class="text-slate-300 text-sm sm:text-lg mb-10 sm:mb-16 max-w-2xl mx-auto">Đăng ký nhận email để cập nhật tính năng mới nhất từ PopMinutes App và các cẩm nang Sales.</p>
         <form id="newsletterForm" class="flex flex-col sm:flex-row justify-center items-stretch gap-3 sm:gap-4 max-w-2xl mx-auto mt-6" novalidate>
-        <input type="email" id="newsletterEmail" placeholder="Nhập địa chỉ email của bạn..." class="newsletter-input flex-1" required>
-        <button type="submit" id="newsletterSubmitBtn" class="newsletter-btn">ĐĂNG KÝ NGAY</button>
-        </form>
+    <input type="email" id="newsletterEmail" name="email" placeholder="Nhập địa chỉ email của bạn..." class="newsletter-input flex-1" required>
+    <button type="submit" id="newsletterSubmitBtn" class="newsletter-btn">ĐĂNG KÝ NGAY</button>
+</form>
     </div>
 </section>
 
@@ -1545,35 +1545,35 @@
             </button>
         </div>
         <form id="pricingForm" class="space-y-4" novalidate>
-            <input type="text" id="pricingName" placeholder="Họ và tên *" class="input-elegant" required>
-            <input type="email" id="pricingEmail" placeholder="Email *" class="input-elegant" required>
-            <input type="tel" id="pricingPhone" placeholder="Số điện thoại *" class="input-elegant" required>
-            <input type="text" id="pricingCompany" placeholder="Công ty" class="input-elegant">
-            <input type="text" id="pricingScale" placeholder="Số lượng sales" class="input-elegant">
-            <div>
-                <div class="relative">
-                    <select id="pricingPackage" class="input-elegant" required>
-                        <option value="" disabled selected>Chọn gói mong muốn</option>
-                        <option value="Đội nhóm">Đội nhóm</option>
-                        <option value="Doanh nghiệp">Doanh nghiệp</option>
-                        <option value="Cao cấp">Cao cấp</option>
-                    </select>
-                    <svg class="absolute right-5 top-1/2 -translate-y-1/2 w-5 h-5 text-[#1B2B7A] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
-                </div>
-                <p class="text-[0.75rem] text-slate-400 mt-2 ml-2">Giá từ <strong>2.790k</strong> đến <strong>8.090k</strong>/tháng · Cao cấp liên hệ</p>
-            </div>
-            <div class="consent-wrapper">
-                <input type="checkbox" id="pricingConsent" name="consent" required class="consent-checkbox">
-                <label for="pricingConsent" class="consent-label">
-                    Tôi đồng ý với 
-                    <a href="https://pophubly.com/pophubly-privacy-policy/" target="_blank" class="consent-link">Chính sách bảo mật</a> 
-                    và 
-                    <a href="https://pophubly.com/term-of-use/" target="_blank" class="consent-link">Điều khoản sử dụng</a> 
-                    của PopMinutes.
-                </label>
-            </div>
-            <button type="submit" id="pricingSubmitBtn" class="btn-main w-full py-4 mt-2">GỬI ĐĂNG KÝ</button>
-        </form>
+    <input type="text" id="pricingName" name="name" placeholder="Họ và tên *" class="input-elegant" required>
+    <input type="email" id="pricingEmail" name="email" placeholder="Email *" class="input-elegant" required>
+    <input type="tel" id="pricingPhone" name="phone" placeholder="Số điện thoại *" class="input-elegant" required>
+    <input type="text" id="pricingCompany" name="company" placeholder="Công ty" class="input-elegant">
+    <input type="text" id="pricingScale" name="scale" placeholder="Số lượng sales" class="input-elegant">
+    <div>
+        <div class="relative">
+            <select id="pricingPackage" name="package" class="input-elegant" required>
+                <option value="" disabled selected>Chọn gói mong muốn</option>
+                <option value="Đội nhóm">Đội nhóm</option>
+                <option value="Doanh nghiệp">Doanh nghiệp</option>
+                <option value="Cao cấp">Cao cấp</option>
+            </select>
+            <svg class="absolute right-5 top-1/2 -translate-y-1/2 w-5 h-5 text-[#1B2B7A] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+        </div>
+        <p class="text-[0.75rem] text-slate-400 mt-2 ml-2">Giá từ <strong>2.790k</strong> đến <strong>8.090k</strong>/tháng · Cao cấp liên hệ</p>
+    </div>
+    <div class="consent-wrapper">
+        <input type="checkbox" id="pricingConsent" name="consent" required class="consent-checkbox">
+        <label for="pricingConsent" class="consent-label">
+            Tôi đồng ý với 
+            <a href="https://pophubly.com/pophubly-privacy-policy/" target="_blank" class="consent-link">Chính sách bảo mật</a> 
+            và 
+            <a href="https://pophubly.com/term-of-use/" target="_blank" class="consent-link">Điều khoản sử dụng</a> 
+            của PopMinutes.
+        </label>
+    </div>
+    <button type="submit" id="pricingSubmitBtn" class="btn-main w-full py-4 mt-2">GỬI ĐĂNG KÝ</button>
+</form>
     </div>
 </div>
 
