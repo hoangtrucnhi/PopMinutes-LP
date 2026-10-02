@@ -640,7 +640,7 @@
             border-radius: 50%;
             transition: 0.3s;
         }
-        input:checked + .slider { background-color: var(--navy); }
+        input:checked + .slider { background-color: #10B981; }
         input:checked + .slider:before { transform: translateX(24px); }
         .toggle-label {
             font-weight: 800;
@@ -1039,6 +1039,84 @@
             .footer-logo-bottom span { font-size: 1.25rem; }
             .footer-links a { font-size: 0.85rem; }
         }
+        .pricing-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: nowrap;
+}
+@media (max-width: 380px) {
+    .pricing-header {
+        gap: 4px;
+    }
+    .toggle-label { font-size: 0.7rem; }
+}
+                /* ===== PRICING BUTTONS — unified ===== */
+        .btn-price {
+            width: 100%;
+            padding: 14px 20px;
+            border-radius: 100px;
+            font-family: inherit;
+            font-weight: 800;
+            font-size: 0.8rem;
+            letter-spacing: 0.02em;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+            border: 2px solid transparent;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+        .btn-price:hover {
+            transform: translateY(-3px) scale(1.02);
+        }
+        .btn-price:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        /* Variant: Trải nghiệm (đỏ) */
+        .btn-price.btn-price-red {
+            background: #8b1a1a;
+            color: #fff;
+            border-color: #8b1a1a;
+            box-shadow: 0 8px 24px rgba(139, 26, 26, 0.25);
+        }
+        .btn-price.btn-price-red:hover {
+            background: #a52222;
+            border-color: #a52222;
+            box-shadow: 0 16px 36px rgba(139, 26, 26, 0.45);
+        }
+
+        /* Variant: Đội nhóm (navy solid) */
+        .btn-price.btn-price-navy {
+            background: var(--navy);
+            color: #fff;
+            border-color: var(--navy);
+            box-shadow: 0 8px 24px rgba(27, 43, 122, 0.3);
+        }
+        .btn-price.btn-price-navy:hover {
+            background: var(--navy-light);
+            border-color: var(--navy-light);
+            box-shadow: 0 16px 36px rgba(27, 43, 122, 0.45);
+        }
+
+        /* Variant: Doanh nghiệp + Cao cấp (outline trắng) */
+        .btn-price.btn-price-outline {
+            background: transparent;
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        .btn-price.btn-price-outline:hover {
+            background: #fff;
+            color: var(--navy);
+            border-color: #fff;
+            box-shadow: 0 16px 36px rgba(255, 255, 255, 0.18);
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -1200,14 +1278,14 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
             <div class="reveal reveal-delay-1 bg-white/[0.07] backdrop-blur-sm p-6 rounded-[28px] border border-white/10 hover:border-[#2D3FA6]/60 transition-all flex flex-col group">
-                <div class="flex justify-between items-center mb-4 gap-2 flex-wrap">
-                    <h4 class="text-slate-300 font-black text-[0.85rem] sm:text-[0.95rem] uppercase tracking-[0.18em]">Trải nghiệm</h4>
-                    <label class="toggle-switch">
-                        <span class="toggle-label">3 tháng</span>
-                        <input type="checkbox" id="planToggle">
-                        <span class="slider"></span>
-                    </label>
-                </div>
+                <div class="pricing-header">
+    <h4 class="text-slate-300 font-black text-[0.85rem] sm:text-[0.95rem] uppercase tracking-[0.18em]">Trải nghiệm</h4>
+    <label class="toggle-switch">
+        <span class="toggle-label">3 tháng</span>
+        <input type="checkbox" id="planToggle">
+        <span class="slider"></span>
+    </label>
+</div>
                 <div id="personalNote" class="bg-[#1B2B7A]/20 border border-[#2D3FA6]/50 text-blue-50 text-[0.8rem] font-semibold p-3.5 rounded-2xl mb-5 leading-relaxed">
                     Trải nghiệm 14 ngày đầu tiên với giá 0đ.<br>Không cần thẻ tín dụng.
                 </div>
@@ -1221,7 +1299,7 @@
                     <li class="bg-emerald-500/15 border border-emerald-500/30 text-emerald-100 px-3 py-2 rounded-xl">• PopMinutes AI bản chuẩn (tóm tắt + transcript)</li>
                     <li>• 0 giờ sử dụng chỗ ngồi tại quán cafe trong hệ thống PopHubly</li>
                 </ul>
-                <button onclick="scrollToForm()" class="w-full py-3 rounded-full bg-[#8b1a1a] border border-[#8b1a1a] font-bold text-white text-xs hover:bg-[#6b1414] transition-all shadow-lg shadow-[#8b1a1a]/30">DÙNG THỬ 14 NGÀY MIỄN PHÍ</button>
+                <button onclick="scrollToForm()" class="btn-price btn-price-red">DÙNG THỬ 14 NGÀY MIỄN PHÍ</button>
             </div>
             <div class="reveal reveal-delay-2 bg-white/90 backdrop-blur-sm text-slate-900 p-6 rounded-[28px] shadow-2xl transform lg:-translate-y-6 flex flex-col relative ring-4 ring-[#1B2B7A]/30 group z-10">
                 <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#1B2B7A] text-white text-[0.65rem] font-black py-1.5 px-4 rounded-full tracking-widest shadow-lg shadow-[#1B2B7A]/40 flex items-center gap-1.5 whitespace-nowrap">
@@ -1238,7 +1316,7 @@
                     <li>• Giảm 10% hóa đơn cafe</li>
                     <li>• Xuất hóa đơn</li>
                 </ul>
-                <button onclick="openPricingModal('Đội nhóm')" class="w-full py-3.5 rounded-full bg-[#1B2B7A] text-white font-black text-xs shadow-xl shadow-[#1B2B7A]/30 hover:bg-[#131F5C] transition-all">MUA NGAY</button>
+                <button onclick="openPricingModal('Đội nhóm')" class="btn-price btn-price-navy">MUA NGAY</button>
             </div>
             <div class="reveal reveal-delay-3 bg-white/[0.07] backdrop-blur-sm p-6 rounded-[28px] border border-white/10 hover:border-[#2D3FA6]/60 transition-all flex flex-col group">
                 <h4 class="text-slate-300 font-black text-[0.85rem] sm:text-[0.95rem] uppercase tracking-[0.18em] mb-4">Doanh nghiệp</h4>
@@ -1254,7 +1332,7 @@
                     <li>• Giảm 15% hóa đơn cafe</li>
                     <li>• Xuất hóa đơn</li>
                 </ul>
-                <button onclick="openPricingModal('Doanh nghiệp')" class="w-full py-3 rounded-full border border-white/20 font-bold text-white text-xs hover:bg-white hover:text-slate-900 transition-all">MUA NGAY</button>
+                <button onclick="openPricingModal('Doanh nghiệp')" class="btn-price btn-price-outline">MUA NGAY</button>
             </div>
             <div class="reveal reveal-delay-1 bg-white/[0.07] backdrop-blur-sm p-6 rounded-[28px] border border-white/10 hover:border-[#2D3FA6]/60 transition-all flex flex-col group">
                 <h4 class="text-slate-300 font-black text-[0.85rem] sm:text-[0.95rem] uppercase tracking-[0.18em] mb-4">Cao cấp</h4>
@@ -1271,7 +1349,7 @@
                     <li>• Giảm 15% hóa đơn cafe</li>
                     <li>• Xuất hóa đơn</li>
                 </ul>
-                <button onclick="openPricingModal('Cao cấp')" class="w-full py-3 rounded-full border border-white/20 font-bold text-white text-xs hover:bg-white hover:text-slate-900 transition-all">LIÊN HỆ NGAY</button>
+                <button onclick="openPricingModal('Cao cấp')" class="btn-price btn-price-outline">LIÊN HỆ NGAY</button>
             </div>
         </div>
     </div>
