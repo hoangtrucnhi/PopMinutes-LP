@@ -771,7 +771,43 @@
             white-space: nowrap;
             line-height: 1;
         }
-        .nav-links a:hover { color: var(--navy); }
+                .nav-links a:hover { color: var(--navy); }
+
+        /* Download button */
+        .nav-download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--navy);
+            color: #fff !important;
+            padding: 11px 22px;
+            border-radius: 100px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            letter-spacing: 0.02em;
+            text-decoration: none;
+            text-transform: none !important;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+            box-shadow: 0 6px 18px rgba(27, 43, 122, 0.18);
+            flex-shrink: 0;
+            line-height: 1;
+            white-space: nowrap;
+        }
+        .nav-download-btn i {
+            font-size: 0.95rem;
+            line-height: 1;
+        }
+        .nav-download-btn:hover {
+            background: var(--navy-deep);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 26px rgba(27, 43, 122, 0.3);
+            color: #fff !important;
+        }
+        .nav-download-btn:active {
+            transform: translateY(0) scale(0.98);
+        }
+
         /* Body padding để không bị nav che */
         body {
             padding-top: 62px;
