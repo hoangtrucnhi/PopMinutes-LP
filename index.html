@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="color-scheme" content="light only">
     <title>PopMinutes — Sales Meeting Intelligence</title>
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/hoangtrucnhi/PopMinutes-PWA/refs/heads/main/launchericon-512x512.png">
+    <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/hoangtrucnhi/PopMinutes-PWA/refs/heads/main/launchericon-512x512.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -51,21 +53,23 @@
             --shadow-lg: 0 20px 48px rgba(27, 43, 122, 0.16);
         }
         * { box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        html {
+            scroll-behavior: smooth;
+            overflow-x: clip;
+        }
 
         body {
-    font-family: 'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
-    background-color: #fff !important;
-    color: var(--text) !important;
-    overflow-x: hidden;
-    min-height: 100vh;
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
+            font-family: 'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
+            background-color: #fff !important;
+            color: var(--text) !important;
+            overflow-x: clip;
+            min-height: 100vh;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
 
         ::selection { background: var(--navy); color: #fff; }
 
@@ -686,6 +690,210 @@
                 width: 100%;
             }
         }
+                /* ===== NAV mới có logo ===== */
+        .nav-mini {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid #edf0f5;
+            padding: 12px 0;
+            width: 100%;
+        }
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+        .nav-logo img {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: block;
+        }
+        .nav-logo-text {
+            font-weight: 900;
+            font-size: 1.1rem;
+            color: var(--navy);
+            letter-spacing: -0.02em;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        .nav-links a {
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: var(--navy);
+        }
+        @media (max-width: 640px) {
+            .nav-inner {
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+            }
+            .nav-links {
+                gap: 1.25rem;
+            }
+            .nav-links a {
+                font-size: 0.75rem;
+            }
+            .nav-logo img {
+                width: 32px;
+                height: 32px;
+            }
+            .nav-logo-text {
+                font-size: 1rem;
+            }
+        }
+
+        /* ===== FOOTER mới ===== */
+        .site-footer {
+            background: #0b1120;
+            color: #cbd5e1;
+            padding: 56px 0 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 48px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .footer-logo-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+        .footer-logo-row img {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: block;
+        }
+        .footer-logo-row span {
+            font-weight: 900;
+            font-size: 1.25rem;
+            color: #fff;
+            letter-spacing: -0.02em;
+        }
+        .footer-company-name {
+            font-weight: 800;
+            font-size: 0.95rem;
+            color: #fff;
+            letter-spacing: 0.02em;
+            margin-top: 4px;
+        }
+        .footer-info-line {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            line-height: 1.7;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        .footer-info-line strong {
+            color: #cbd5e1;
+            font-weight: 600;
+            min-width: 56px;
+        }
+        .footer-info-line a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-info-line a:hover {
+            color: #fff;
+        }
+        .footer-col-title {
+            font-weight: 800;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #8ea5d9;
+            margin-bottom: 18px;
+        }
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 500;
+            transition: color 0.2s, transform 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .footer-links a:hover {
+            color: #fff;
+            transform: translateX(4px);
+        }
+        .footer-links a::before {
+            content: '→';
+            color: #8ea5d9;
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 24px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: #64748b;
+        }
+        @media (max-width: 640px) {
+            .site-footer {
+                padding: 40px 0 20px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+                padding-bottom: 32px;
+            }
+            .footer-logo-row img {
+                width: 40px;
+                height: 40px;
+            }
+            .footer-logo-row span {
+                font-size: 1.1rem;
+            }
+            .footer-links {
+                gap: 10px;
+            }
+            .footer-links a {
+                font-size: 0.88rem;
+            }
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -693,10 +901,18 @@
 <div class="glow-orb w-[400px] h-[400px] bg-[#1B2B7A] top-[-100px] left-[-100px]" style="opacity:0.10;"></div>
 <div class="glow-orb w-[300px] h-[300px] bg-[#7c8ec9] bottom-[-50px] right-[-80px]" style="opacity:0.08;"></div>
 
-<nav class="nav-mini wide-container flex justify-center items-center sticky top-0 bg-white/80 backdrop-blur-xl z-50 border-b border-slate-100 py-4">
-    <a href="#features" class="hover:text-[#1B2B7A] transition">Nỗi đau</a>
-    <a href="#how" class="hover:text-[#1B2B7A] transition">Giải pháp</a>
-    <a href="#pricing" class="hover:text-[#1B2B7A] transition">Bảng giá</a>
+<nav class="nav-mini">
+    <div class="wide-container nav-inner">
+        <a href="#" class="nav-logo">
+            <img src="https://raw.githubusercontent.com/hoangtrucnhi/PopMinutes-PWA/refs/heads/main/launchericon-512x512.png" alt="PopMinutes Logo">
+            <span class="nav-logo-text">PopMinutes</span>
+        </a>
+        <div class="nav-links">
+            <a href="#features">Nỗi đau</a>
+            <a href="#how">Giải pháp</a>
+            <a href="#pricing">Bảng giá</a>
+        </div>
+    </div>
 </nav>
 
 <!-- Hero -->
@@ -960,8 +1176,34 @@
     </div>
 </section>
 
-<footer class="py-8 text-center text-slate-400 font-bold text-xs tracking-[0.15em] border-t border-slate-100">
-    &copy; 2026 POPHUBLY ECOSYSTEM &bull; POPMINUTES.AI
+<footer class="site-footer">
+    <div class="wide-container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo-row">
+                    <img src="https://raw.githubusercontent.com/hoangtrucnhi/PopMinutes-PWA/refs/heads/main/launchericon-512x512.png" alt="PopMinutes">
+                    <span>PopMinutes</span>
+                </div>
+                <div class="footer-company-name">CÔNG TY TNHH POPHUBLY</div>
+                <div class="footer-info-line"><strong>MST:</strong> 1602232842</div>
+                <div class="footer-info-line"><strong>SĐT:</strong> <a href="tel:0384744368">0384744368</a></div>
+                <div class="footer-info-line"><strong>Email:</strong> <a href="mailto:info@pophubly.com">info@pophubly.com</a></div>
+            </div>
+            <div>
+                <div class="footer-col-title">Chính sách &amp; Điều khoản</div>
+                <div class="footer-links">
+                    <a href="https://pophubly.com/pophubly-privacy-policy/" target="_blank" rel="noopener">Chính sách bảo mật</a>
+                    <a href="https://pophubly.com/term-of-use/" target="_blank" rel="noopener">Điều khoản sử dụng</a>
+                    <a href="https://pophubly.com/chinh-sach-thanh-toan/" target="_blank" rel="noopener">Chính sách thanh toán</a>
+                    <a href="https://pophubly.com/chinh-sach-hoan-tien/" target="_blank" rel="noopener">Chính sách hoàn tiền</a>
+                    <a href="https://pophubly.com/quy-trinh-khieu-nai/" target="_blank" rel="noopener">Quy trình khiếu nại</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 POPHUBLY ECOSYSTEM &bull; POPMINUTES.AI
+        </div>
+    </div>
 </footer>
 
 <!-- Success Modal -->
