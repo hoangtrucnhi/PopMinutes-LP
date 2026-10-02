@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -724,8 +725,11 @@
         .nav-logo-text {
             font-weight: 900;
             font-size: 1.1rem;
-            color: var(--navy);
+            color: #0F172A;
             letter-spacing: -0.02em;
+        }
+        .nav-logo-text .text-minutes {
+            color: var(--navy);
         }
         .nav-links {
             display: flex;
@@ -765,7 +769,7 @@
             }
         }
 
-                /* ===== FOOTER mới — nền sáng, tối giản ===== */
+                /* ===== FOOTER mới — 4 cột, nền sáng ===== */
         .site-footer {
             background: #F8FAFC;
             color: #475569;
@@ -774,99 +778,170 @@
         }
         .footer-grid {
             display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 48px;
+            grid-template-columns: 1.3fr 1fr 1fr 1fr;
+            gap: 40px;
             padding-bottom: 40px;
             border-bottom: 1px solid #E2E8F0;
         }
-        .footer-brand {
+        .footer-col-title {
+            font-weight: 800;
+            font-size: 0.78rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #94A3B8;
+            margin-bottom: 18px;
+        }
+        /* ==== CỘT 1: THÔNG TIN CHUNG ==== */
+        .footer-info-block {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-        }
-        .footer-logo-row {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 12px;
-        }
-        .footer-logo-row img {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            display: block;
-        }
-        .footer-logo-row span {
-            font-weight: 900;
-            font-size: 1.15rem;
-            color: #0F172A;
-            letter-spacing: -0.02em;
+            gap: 8px;
         }
         .footer-company-name {
             font-weight: 800;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             color: #0F172A;
-            letter-spacing: 0.02em;
-            margin-top: 4px;
-            margin-bottom: 4px;
+            letter-spacing: 0.01em;
+            line-height: 1.4;
         }
         .footer-info-line {
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             color: #64748B;
-            line-height: 1.7;
+            line-height: 1.6;
             display: flex;
-            align-items: flex-start;
-            gap: 8px;
+            gap: 6px;
+            flex-wrap: wrap;
         }
         .footer-info-line strong {
             color: #475569;
             font-weight: 600;
-            min-width: 56px;
+            min-width: 0;
         }
         .footer-info-line a {
             color: #64748B;
             text-decoration: none;
             transition: color 0.2s;
+            word-break: break-word;
         }
         .footer-info-line a:hover {
             color: var(--navy);
         }
-        .footer-col-title {
-            font-weight: 800;
-            font-size: 0.78rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: #94A3B8;
-            margin-bottom: 18px;
+        /* Logo ở dưới info công ty (cột 1) */
+        .footer-logo-bottom {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px dashed #CBD5E1;
         }
-        .footer-links {
+        .footer-logo-bottom img {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: block;
+            flex-shrink: 0;
+        }
+        .footer-logo-bottom span {
+            font-weight: 900;
+            font-size: 1.05rem;
+            color: #0F172A;
+            letter-spacing: -0.02em;
+        }
+        .footer-logo-bottom span .text-minutes {
+            color: var(--navy);
+        }
+
+        /* ==== CỘT 2: LIÊN HỆ ==== */
+        .footer-contact-list {
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
+        .footer-contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.88rem;
+            color: #475569;
+            line-height: 1.55;
+        }
+        .footer-contact-item i {
+            color: var(--navy);
+            font-size: 0.9rem;
+            width: 16px;
+            text-align: center;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+        .footer-contact-item a {
+            color: #475569;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-contact-item a:hover {
+            color: var(--navy);
+        }
+        .footer-socials {
+            display: flex;
+            gap: 10px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+        .footer-socials a {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: #fff;
+            border: 1px solid #E2E8F0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748B;
+            font-size: 15px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .footer-socials a:hover {
+            border-color: var(--navy);
+            color: var(--navy);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(27, 43, 122, 0.12);
+        }
+
+        /* ==== CỘT 3 & 4: LINKS ==== */
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+        }
         .footer-links a {
             color: #475569;
             text-decoration: none;
-            font-size: 0.92rem;
+            font-size: 0.88rem;
             font-weight: 500;
             transition: color 0.2s, transform 0.2s;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
+            line-height: 1.5;
         }
         .footer-links a:hover {
             color: var(--navy);
-            transform: translateX(4px);
+            transform: translateX(3px);
         }
         .footer-links a::before {
             content: '→';
             color: #94A3B8;
-            font-size: 0.85rem;
+            font-size: 0.78rem;
             transition: color 0.2s;
+            flex-shrink: 0;
         }
         .footer-links a:hover::before {
             color: var(--navy);
         }
+
+        /* ==== FOOTER BOTTOM ==== */
         .footer-bottom {
             text-align: center;
             padding-top: 24px;
@@ -875,27 +950,40 @@
             letter-spacing: 0.15em;
             color: #94A3B8;
         }
+
+        /* ==== RESPONSIVE ==== */
+        @media (max-width: 1024px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 32px;
+            }
+        }
         @media (max-width: 640px) {
             .site-footer {
                 padding: 40px 0 20px;
             }
             .footer-grid {
                 grid-template-columns: 1fr;
-                gap: 32px;
-                padding-bottom: 32px;
+                gap: 28px;
+                padding-bottom: 28px;
             }
-            .footer-logo-row img {
-                width: 40px;
-                height: 40px;
+            .footer-logo-bottom img {
+                width: 36px;
+                height: 36px;
             }
-            .footer-logo-row span {
-                font-size: 1.05rem;
+            .footer-logo-bottom span {
+                font-size: 1rem;
             }
             .footer-links {
                 gap: 10px;
             }
             .footer-links a {
-                font-size: 0.88rem;
+                font-size: 0.85rem;
+            }
+            .footer-socials a {
+                width: 34px;
+                height: 34px;
+                font-size: 14px;
             }
         }
     </style>
@@ -909,7 +997,7 @@
     <div class="wide-container nav-inner">
         <a href="#" class="nav-logo">
             <img src="https://raw.githubusercontent.com/hoangtrucnhi/PopMinutes-PWA/refs/heads/main/launchericon-512x512.png" alt="PopMinutes Logo">
-            <span class="nav-logo-text">PopMinutes</span>
+            <span class="nav-logo-text">Pop<span class="text-minutes">Minutes</span></span>
         </a>
         <div class="nav-links">
             <a href="#features">Nỗi đau</a>
@@ -1183,27 +1271,72 @@
 <footer class="site-footer">
     <div class="wide-container">
         <div class="footer-grid">
-            <div class="footer-brand">
-                <div class="footer-logo-row">
-                    <img src="https://raw.githubusercontent.com/hoangtrucnhi/PopMinutes-PWA/refs/heads/main/launchericon-512x512.png" alt="PopMinutes">
-                    <span>PopMinutes</span>
+
+            <!-- ==== CỘT 1: THÔNG TIN CHUNG ==== -->
+            <div>
+                <div class="footer-col-title">Thông tin chung</div>
+                <div class="footer-info-block">
+                    <div class="footer-company-name">CÔNG TY TNHH POPHUBLY</div>
+                    <div class="footer-info-line"><strong>Người đại diện:</strong> HOÀNG TRÚC NHI</div>
+                    <div class="footer-info-line"><strong>MST:</strong> 1602232842</div>
                 </div>
-                <div class="footer-company-name">CÔNG TY TNHH POPHUBLY</div>
-                <div class="footer-info-line"><strong>MST:</strong> 1602232842</div>
-                <div class="footer-info-line"><strong>SĐT:</strong> <a href="tel:0384744368">0384744368</a></div>
-                <div class="footer-info-line"><strong>Email:</strong> <a href="mailto:info@pophubly.com">info@pophubly.com</a></div>
+                <div class="footer-logo-bottom">
+                    <img src="https://raw.githubusercontent.com/hoangtrucnhi/PopMinutes-PWA/refs/heads/main/launchericon-512x512.png" alt="PopMinutes">
+                    <span>Pop<span class="text-minutes">Minutes</span></span>
+                </div>
             </div>
+
+            <!-- ==== CỘT 2: LIÊN HỆ ==== -->
+            <div>
+                <div class="footer-col-title">Liên hệ</div>
+                <div class="footer-contact-list">
+                    <div class="footer-contact-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>178 Tuy Biên, Tổ 6, Vĩnh Chánh 2, Vĩnh Ngươn, Phường Châu Đốc, Tỉnh An Giang, Việt Nam</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <a href="mailto:info@pophubly.com">info@pophubly.com</a>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fa-solid fa-phone"></i>
+                        <a href="tel:0384744368">0384 744 368</a>
+                    </div>
+                </div>
+                <div class="footer-socials">
+                    <a href="#" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" target="_blank" rel="noopener" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="#" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" target="_blank" rel="noopener" aria-label="Zalo"><i class="fa-solid fa-comment-dots"></i></a>
+                </div>
+            </div>
+
+            <!-- ==== CỘT 3: CHÍNH SÁCH & ĐIỀU KHOẢN ==== -->
             <div>
                 <div class="footer-col-title">Chính sách &amp; Điều khoản</div>
                 <div class="footer-links">
                     <a href="https://pophubly.com/pophubly-privacy-policy/" target="_blank" rel="noopener">Chính sách bảo mật</a>
                     <a href="https://pophubly.com/term-of-use/" target="_blank" rel="noopener">Điều khoản sử dụng</a>
-                    <a href="https://pophubly.com/chinh-sach-thanh-toan/" target="_blank" rel="noopener">Chính sách thanh toán</a>
                     <a href="https://pophubly.com/chinh-sach-hoan-tien/" target="_blank" rel="noopener">Chính sách hoàn tiền</a>
+                    <a href="https://pophubly.com/quy-trinh-thanh-toan/" target="_blank" rel="noopener">Quy trình thanh toán</a>
                     <a href="https://pophubly.com/quy-trinh-khieu-nai/" target="_blank" rel="noopener">Quy trình khiếu nại</a>
                 </div>
             </div>
+
+            <!-- ==== CỘT 4: HỢP TÁC ==== -->
+            <div>
+                <div class="footer-col-title">Hợp tác</div>
+                <div class="footer-links">
+                    <a href="#">Đối tác địa điểm</a>
+                    <a href="#">Đối tác chiến lược</a>
+                    <a href="#">Tiếp thị liên kết</a>
+                    <a href="#">Chương trình khác</a>
+                </div>
+            </div>
+
         </div>
+
         <div class="footer-bottom">
             &copy; 2026 POPHUBLY ECOSYSTEM &bull; POPMINUTES.AI
         </div>
