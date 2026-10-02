@@ -53,7 +53,6 @@
         * { box-sizing: border-box; }
         html { scroll-behavior: smooth; }
 
-        /* FIX: body không dùng flex để không bị lệch */
         body {
             font-family: 'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
             background-color: #fff !important;
@@ -119,7 +118,6 @@
         }
         .step-trigger:hover { opacity: 0.75; }
 
-        /* Buttons — đồng bộ PWA */
         .btn-main {
             background: var(--navy);
             color: white;
@@ -255,84 +253,72 @@
         }
 
         /* ============================================
-           MODAL — Bottom Sheet trên mobile, center trên desktop
-           Đồng bộ PWA PopMinutes
+           MODAL — LUÔN CĂN GIỮA, AN TOÀN MỌI VIEWPORT
            ============================================ */
         .modal-overlay {
             position: fixed;
             inset: 0;
             background: rgba(15, 23, 42, 0.65);
             backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             display: none;
-            align-items: flex-end;
+            align-items: flex-start;
             justify-content: center;
             z-index: 9999;
-            overflow: hidden;
-            transition: opacity 0.3s ease;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 16px;
         }
-        .modal-overlay.active,
         .modal-overlay:not(.hidden) {
             display: flex;
-            animation: fadeIn 0.2s ease-out;
         }
         .modal-overlay.hidden { display: none; }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideUp {
-            from { transform: translateY(100%); opacity: 0; }
-            to   { transform: translateY(0); opacity: 1; }
-        }
         @keyframes scaleIn {
-            from { transform: scale(0.9); opacity: 0; }
+            from { transform: scale(0.94); opacity: 0; }
             to   { transform: scale(1); opacity: 1; }
         }
 
         .modal-box {
             background: var(--surface);
-            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+            border-radius: var(--radius-lg);
             width: 100%;
             max-width: 500px;
-            max-height: 90vh;
-            max-height: 90dvh;
-            overflow-y: auto;
-            overflow-x: hidden;
-            -webkit-overflow-scrolling: touch;
-            overscroll-behavior: contain;
-            padding: 20px 20px 28px;
-            padding-bottom: calc(28px + env(safe-area-inset-bottom, 0px));
-            box-shadow: 0 -20px 48px rgba(0, 0, 0, 0.25);
-            animation: slideUp 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+            margin: auto;
+            padding: 24px;
+            box-shadow: var(--shadow-lg);
+            animation: scaleIn 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
             position: relative;
         }
-        @media (min-width: 640px) {
-            .modal-overlay { align-items: center; padding: 2rem; }
+        .modal-box.modal-lg { max-width: 640px; }
+
+        @media (max-width: 640px) {
+            .modal-overlay { padding: 12px; }
             .modal-box {
-                border-radius: var(--radius-xl);
-                max-width: 500px;
-                padding: 24px;
-                padding-bottom: 24px;
-                box-shadow: var(--shadow-lg);
-                animation: scaleIn 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+                border-radius: var(--radius-lg);
+                padding: 20px;
+                max-width: 100%;
             }
-            .modal-box.modal-lg { max-width: 600px; }
+            .modal-box.modal-lg { max-width: 100%; }
         }
 
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 16px;
+            padding-bottom: 14px;
             border-bottom: 1px solid var(--border);
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             gap: 12px;
         }
         .modal-title {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 800;
             color: var(--text);
             letter-spacing: -0.3px;
             flex: 1;
             min-width: 0;
+            line-height: 1.35;
         }
         .modal-close {
             width: 36px;
@@ -351,6 +337,52 @@
         }
         .modal-close:hover { background: #E2E8F0; }
         .modal-close:active { transform: scale(0.9); }
+
+        /* PDF/Audio viewer */
+        .media-viewer {
+            width: 100%;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            background: #F1F5F9;
+            border: 1px solid var(--border);
+        }
+        .media-viewer iframe {
+            width: 100%;
+            height: 60vh;
+            min-height: 320px;
+            max-height: 600px;
+            border: none;
+            display: block;
+        }
+        .media-viewer audio {
+            width: 100%;
+            display: block;
+            padding: 12px;
+            box-sizing: border-box;
+        }
+        .pdf-fallback {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 18px;
+            margin-top: 14px;
+            background: #fff;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-md);
+            color: var(--navy);
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.2s;
+            font-family: inherit;
+            width: 100%;
+        }
+        .pdf-fallback:hover {
+            border-color: var(--navy);
+            background: var(--navy-pale);
+        }
+        .pdf-fallback:active { transform: scale(0.98); }
 
         /* Spinner trong button */
         .btn-spinner {
@@ -429,7 +461,6 @@
         }
         .consent-link:hover { color: var(--navy-deep); }
 
-        /* Success modal content */
         .success-icon-wrap {
             width: 64px;
             height: 64px;
@@ -446,7 +477,6 @@
             color: var(--success);
         }
 
-        /* Toggle switch — đồng bộ PWA */
         .toggle-switch {
             position: relative;
             display: inline-flex;
@@ -539,7 +569,7 @@
     </div>
 </section>
 
-<!-- Features — FIX responsive: 1 col mobile, 1 col tablet (md), 3 col desktop (lg) -->
+<!-- Features -->
 <section id="features" class="py-20 sm:py-32 section-light">
     <div class="wide-container">
         <div class="text-center mb-12 sm:mb-20 reveal">
@@ -549,7 +579,6 @@
             </h2>
             <p class="text-slate-500 text-sm sm:text-lg max-w-2xl mx-auto">Ba vấn đề lớn nhất của sales khi gặp khách ngoài văn phòng – và cách PopMinutes giải quyết triệt để.</p>
         </div>
-        <!-- FIX: lg:grid-cols-3 thay vì md:grid-cols-3 (tablet stack dọc) -->
         <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-10">
             <div class="reveal reveal-delay-1 group bg-white p-6 sm:p-10 rounded-[24px] sm:rounded-[36px] shadow-lg shadow-slate-100 hover:shadow-2xl hover:shadow-slate-200/60 transition-all duration-500 border border-transparent hover:border-slate-100">
                 <div class="w-14 h-14 sm:w-18 sm:h-18 bg-[#F0F3FF] group-hover:bg-[#1B2B7A] rounded-2xl sm:rounded-3xl flex items-center justify-center mb-6 sm:mb-8 transition-all duration-500 group-hover:shadow-xl group-hover:shadow-[#1B2B7A]/20">
@@ -583,7 +612,6 @@
         <h2 class="title-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-12 sm:mb-24 text-center">Các giải pháp trong <span class="text-[#1B2B7A]">PopMinutes App</span></h2>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-20 items-center">
             <div class="space-y-4 sm:space-y-8">
-                <!-- Solution 01 -->
                 <div class="step-trigger active" id="step1" onclick="updateStep(0, this)">
                     <div class="flex items-center gap-3 mb-2 sm:mb-3">
                         <div class="w-10 h-10 sm:w-12 sm:h-12 bg-[#F0F3FF] rounded-xl flex items-center justify-center flex-shrink-0">
@@ -594,7 +622,6 @@
                     <h3 class="text-lg sm:text-2xl md:text-3xl font-black mb-2 leading-snug">AI chuyển toàn bộ file ghi âm thành biên bản</h3>
                     <p class="text-sm sm:text-base text-slate-500 font-medium">Kèm theo <strong>toàn bộ đoạn hội thoại</strong> được chuyển thành văn bản, rõ từng người nói.</p>
                 </div>
-                <!-- Solution 02 — FIX: thêm icon + label giống 01/03 -->
                 <div class="step-trigger" onclick="updateStep(1, this)">
                     <div class="flex items-center gap-3 mb-2 sm:mb-3">
                         <div class="w-10 h-10 sm:w-12 sm:h-12 bg-[#F0F3FF] rounded-xl flex items-center justify-center flex-shrink-0">
@@ -605,7 +632,6 @@
                     <h3 class="text-lg sm:text-2xl md:text-3xl font-black leading-snug">Nhận biên bản tức thì qua email</h3>
                     <p class="text-sm sm:text-base text-slate-500 font-medium">Sau khi buổi họp kết thúc, biên bản tự động gửi đến bạn, sếp và khách hàng.</p>
                 </div>
-                <!-- Solution 03 -->
                 <div class="step-trigger" onclick="updateStep(2, this)">
                     <div class="flex items-center gap-3 mb-2 sm:mb-3">
                         <div class="w-10 h-10 sm:w-12 sm:h-12 bg-[#F0F3FF] rounded-xl flex items-center justify-center flex-shrink-0">
@@ -635,7 +661,6 @@
             <p class="text-slate-300 font-medium text-base sm:text-lg max-w-xl mx-auto">Không phí khởi tạo. Chọn gói phù hợp với quy mô.</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
-            <!-- Trải nghiệm -->
             <div class="reveal reveal-delay-1 bg-white/[0.07] backdrop-blur-sm p-6 rounded-[28px] border border-white/10 hover:border-[#2D3FA6]/60 transition-all flex flex-col group">
                 <div class="flex justify-between items-center mb-4 gap-2 flex-wrap">
                     <h4 class="text-slate-300 font-black text-[0.85rem] sm:text-[0.95rem] uppercase tracking-[0.18em]">Trải nghiệm</h4>
@@ -660,7 +685,6 @@
                 </ul>
                 <button onclick="scrollToForm()" class="w-full py-3 rounded-full bg-[#8b1a1a] border border-[#8b1a1a] font-bold text-white text-xs hover:bg-[#6b1414] transition-all shadow-lg shadow-[#8b1a1a]/30">DÙNG THỬ 14 NGÀY MIỄN PHÍ</button>
             </div>
-            <!-- Đội nhóm -->
             <div class="reveal reveal-delay-2 bg-white/90 backdrop-blur-sm text-slate-900 p-6 rounded-[28px] shadow-2xl transform lg:-translate-y-6 flex flex-col relative ring-4 ring-[#1B2B7A]/30 group z-10">
                 <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#1B2B7A] text-white text-[0.65rem] font-black py-1.5 px-4 rounded-full tracking-widest shadow-lg shadow-[#1B2B7A]/40 flex items-center gap-1.5 whitespace-nowrap">
                     <svg class="w-3.5 h-3.5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg> PHỔ BIẾN
@@ -678,7 +702,6 @@
                 </ul>
                 <button onclick="openPricingModal('Đội nhóm')" class="w-full py-3.5 rounded-full bg-[#1B2B7A] text-white font-black text-xs shadow-xl shadow-[#1B2B7A]/30 hover:bg-[#131F5C] transition-all">MUA NGAY</button>
             </div>
-            <!-- Doanh nghiệp -->
             <div class="reveal reveal-delay-3 bg-white/[0.07] backdrop-blur-sm p-6 rounded-[28px] border border-white/10 hover:border-[#2D3FA6]/60 transition-all flex flex-col group">
                 <h4 class="text-slate-300 font-black text-[0.85rem] sm:text-[0.95rem] uppercase tracking-[0.18em] mb-4">Doanh nghiệp</h4>
                 <div class="text-3xl font-black mb-6 text-white">8.090k <span class="text-xs text-slate-500 font-medium">/ tháng</span></div>
@@ -695,7 +718,6 @@
                 </ul>
                 <button onclick="openPricingModal('Doanh nghiệp')" class="w-full py-3 rounded-full border border-white/20 font-bold text-white text-xs hover:bg-white hover:text-slate-900 transition-all">MUA NGAY</button>
             </div>
-            <!-- Cao cấp -->
             <div class="reveal reveal-delay-1 bg-white/[0.07] backdrop-blur-sm p-6 rounded-[28px] border border-white/10 hover:border-[#2D3FA6]/60 transition-all flex flex-col group">
                 <h4 class="text-slate-300 font-black text-[0.85rem] sm:text-[0.95rem] uppercase tracking-[0.18em] mb-4">Cao cấp</h4>
                 <div class="text-3xl font-black mb-6 text-white">Liên hệ</div>
@@ -769,7 +791,7 @@
     &copy; 2026 POPHUBLY ECOSYSTEM &bull; POPMINUTES.AI
 </footer>
 
-<!-- Success Modal — PWA bottom-sheet style -->
+<!-- Success Modal -->
 <div id="successModal" class="modal-overlay hidden">
     <div class="modal-box" style="max-width: 400px; text-align: center;">
         <button onclick="closeSuccessModal()" class="modal-close" style="position:absolute; top:16px; right:16px;" aria-label="Đóng">
@@ -784,7 +806,7 @@
     </div>
 </div>
 
-<!-- Pricing Modal — PWA bottom-sheet style -->
+<!-- Pricing Modal -->
 <div id="pricingModal" class="modal-overlay hidden">
     <div class="modal-box modal-lg">
         <div class="modal-header">
@@ -828,15 +850,15 @@
 
 <!-- Audio Modal -->
 <div id="audioModal" class="modal-overlay hidden">
-    <div class="modal-box" style="max-width: 500px;">
+    <div class="modal-box" style="max-width: 480px;">
         <div class="modal-header">
             <h3 class="modal-title">Nghe thử Audio</h3>
             <button onclick="closeAudioModal()" class="modal-close" aria-label="Đóng">
                 <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
         </div>
-        <div class="bg-slate-100 rounded-xl p-4">
-            <audio controls class="w-full">
+        <div class="media-viewer">
+            <audio controls id="demoAudio">
                 <source src="https://hoangtrucnhi.github.io/demo-popminutes/demo.mp3" type="audio/mpeg">
                 Trình duyệt của bạn không hỗ trợ thẻ audio.
             </audio>
@@ -846,14 +868,28 @@
 
 <!-- PDF Modal -->
 <div id="pdfModal" class="modal-overlay hidden">
-    <div class="modal-box modal-lg">
+    <div class="modal-box modal-lg" style="max-width: 800px;">
         <div class="modal-header">
             <h3 class="modal-title">Xem Kết quả (PDF)</h3>
             <button onclick="closePdfModal()" class="modal-close" aria-label="Đóng">
                 <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
         </div>
-        <iframe src="https://docs.google.com/document/d/1N9PJ8FxBhkOYXHG85ryXwCxdx0PjboBZFjSqGrLdcDI/preview" style="width:100%; height:70vh; max-height:600px; border:none; border-radius:1rem;"></iframe>
+        <div class="media-viewer" id="pdfViewerWrap">
+            <iframe 
+                id="pdfIframe"
+                src="https://docs.google.com/document/d/1N9PJ8FxBhkOYXHG85ryXwCxdx0PjboBZFjSqGrLdcDI/preview"
+                allowfullscreen
+                loading="lazy">
+            </iframe>
+        </div>
+        <a href="https://docs.google.com/document/d/1N9PJ8FxBhkOYXHG85ryXwCxdx0PjboBZFjSqGrLdcDI/view" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           class="pdf-fallback">
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            Mở trong tab mới (nếu không xem được)
+        </a>
     </div>
 </div>
 
@@ -870,14 +906,23 @@
         document.body.style.overflow = '';
     }
     function closeSuccessModal() { closeModal('successModal'); }
-    function openAudioModal() { openModal('audioModal'); }
+
+    function openAudioModal() {
+        openModal('audioModal');
+    }
     function closeAudioModal() {
         closeModal('audioModal');
-        const audio = document.querySelector('#audioModal audio');
-        if (audio) audio.pause();
+        const audio = document.getElementById('demoAudio');
+        if (audio) {
+            audio.pause();
+            audio.currentTime = 0;
+        }
     }
-    function openPdfModal() { openModal('pdfModal'); }
+    function openPdfModal() {
+        openModal('pdfModal');
+    }
     function closePdfModal() { closeModal('pdfModal'); }
+
     function openPricingModal(packageName) {
         document.getElementById('pricingPackage').value = packageName;
         openModal('pricingModal');
@@ -890,6 +935,8 @@
             if (e.target === this) {
                 this.classList.add('hidden');
                 document.body.style.overflow = '';
+                const audio = document.getElementById('demoAudio');
+                if (audio) { audio.pause(); }
             }
         });
     });
@@ -916,14 +963,12 @@
         const btn = document.getElementById(buttonId);
         if (!form || !btn) return;
 
-        // Lưu HTML gốc của button để restore sau
         const originalHTML = btn.innerHTML;
 
         form.addEventListener("submit", async function(e) {
             e.preventDefault();
             if (!form.checkValidity()) { form.reportValidity(); return; }
 
-            // FIX 4: Loading spinner
             btn.disabled = true;
             btn.innerHTML = '<span class="btn-spinner"></span> Đang gửi...';
 
