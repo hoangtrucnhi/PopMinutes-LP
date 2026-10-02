@@ -48,8 +48,6 @@
         .reveal-delay-1 { transition-delay: 0.12s; }
         .reveal-delay-2 { transition-delay: 0.24s; }
         .reveal-delay-3 { transition-delay: 0.36s; }
-
-        /* FIX 1: tăng padding step-trigger để nội dung không sát viền */
         .step-trigger {
             opacity: 0.45;
             transition: all 0.45s cubic-bezier(0.16, 0.67, 0.29, 0.99);
@@ -59,9 +57,7 @@
             border-radius: 0 8px 8px 0;
         }
         @media (min-width: 640px) {
-            .step-trigger {
-                padding: 1rem 1.75rem 1rem 2.5rem;
-            }
+            .step-trigger { padding: 1rem 1.75rem 1rem 2.5rem; }
         }
         .step-trigger.active {
             opacity: 1; border-left-color: var(--popblue);
@@ -69,7 +65,6 @@
             transform: translateX(8px);
         }
         .step-trigger:hover { opacity: 0.75; }
-
         .btn-main {
             background: var(--popblue); color: white; padding: 1.2rem 2.6rem; border-radius: 100px;
             font-weight: 800; font-size: 0.95rem; letter-spacing: 0.02em;
@@ -111,30 +106,27 @@
         .float-anim { animation: floatCard 5.5s ease-in-out infinite; }
         .bg-noise { background-image: radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px); background-size: 28px 28px; }
         .glow-orb { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.22; pointer-events: none; z-index: 0; }
-
         .input-elegant {
             width: 100%; padding: 1.1rem 1.5rem; background: #f8fafc; border: 2px solid transparent;
             border-radius: 20px; outline: none; font-weight: 600; font-size: 0.95rem; transition: all 0.3s; color: #1e293b;
         }
         .input-elegant:focus { border-color: var(--popblue); background: #fff; box-shadow: 0 0 0 8px rgba(74,102,160,0.06); }
         .input-elegant::placeholder { color: #94a3b8; font-weight: 500; }
-
-        /* FIX 3: style dropdown đẹp hơn */
         select.input-elegant {
             padding-right: 3.25rem;
             cursor: pointer;
             appearance: none;
             -webkit-appearance: none;
             background-image: none;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
         }
-        select.input-elegant:required:invalid {
-            color: #94a3b8;
-        }
+        select.input-elegant:required:invalid { color: #94a3b8; }
         select.input-elegant option {
             color: #1e293b;
             padding: 12px;
         }
-
         #step-preview { transition: opacity 0.35s ease, transform 0.35s ease; }
         .label-sm { font-size: 0.8rem; letter-spacing: 0.18em; }
         .label-md { font-size: 0.75rem; letter-spacing: 0.18em; }
@@ -148,13 +140,14 @@
             .nav-mini { gap: 1rem; }
         }
 
-        /* FIX 2: Modal căn giữa hoàn hảo mọi màn hình */
+        /* ============================================
+           FIX MODAL CENTERING:
+           Dùng flex + overflow-y-auto + content m-auto
+           → content luôn căn giữa khi đủ chỗ,
+             và bắt đầu từ trên cùng khi content dài hơn viewport
+           ============================================ */
         .modal-overlay {
             transition: opacity 0.3s ease;
-            padding: 1rem;
-        }
-        @media (min-width: 640px) {
-            .modal-overlay { padding: 2rem; }
         }
         .modal-overlay.hidden { opacity: 0; pointer-events: none; }
         .modal-content {
@@ -162,8 +155,6 @@
             opacity: 0;
             transform: scale(0.9);
             width: 100%;
-            max-height: calc(100vh - 2rem);
-            overflow-y: auto;
         }
         .modal-overlay:not(.hidden) .modal-content { opacity: 1; transform: scale(1); }
         input:invalid, textarea:invalid, select:invalid { border-color: transparent; box-shadow: none; }
@@ -178,17 +169,12 @@
             transition: inherit;
             opacity: 0;
             transform: scale(0.9);
-            max-height: calc(100vh - 2rem);
-            overflow-y: auto;
         }
         @media (min-width: 640px) {
-            .media-modal-content {
-                border-radius: 2rem;
-                padding: 2rem;
-            }
+            .media-modal-content { border-radius: 2rem; padding: 2rem; }
         }
         .modal-overlay:not(.hidden) .media-modal-content { opacity: 1; transform: scale(1); }
-        .media-modal-content iframe { width: 100%; height: 70vh; max-height: 600px; border: none; border-radius: 1rem; }
+        .media-modal-content iframe { width: 100%; height: 60vh; max-height: 600px; border: none; border-radius: 1rem; }
 
         .toggle-switch { position: relative; display: inline-flex; align-items: center; cursor: pointer; gap: 10px; }
         .toggle-switch input { opacity: 0; width: 0; height: 0; }
@@ -203,7 +189,6 @@
         input:checked + .slider { background-color: var(--popblue); }
         input:checked + .slider:before { transform: translateX(24px); }
         .toggle-label { font-weight: 800; font-size: 0.8rem; letter-spacing: 0.02em; color: #ffffff; }
-
         .consent-wrapper { display: flex; align-items: flex-start; gap: 10px; margin-top: 6px; }
         .consent-checkbox {
             width: 20px; height: 20px; flex-shrink: 0; margin: 0; padding: 0; cursor: pointer;
@@ -221,7 +206,6 @@
         .consent-label { font-size: 0.85rem; color: #475569; font-weight: 500; line-height: 1.5; cursor: pointer; margin: 0; padding: 0; }
         .consent-link { color: var(--popblue); font-weight: 700; text-decoration: underline; text-underline-offset: 2px; transition: color 0.2s; }
         .consent-link:hover { color: var(--popblue-deep); }
-
         #step-preview {
             min-height: 380px;
             padding: 1.5rem;
@@ -497,8 +481,8 @@
 </footer>
 
 <!-- Success Modal -->
-<div id="successModal" class="fixed inset-0 z-[9999] flex items-center justify-center modal-overlay hidden bg-black/50 backdrop-blur-sm">
-    <div class="bg-white rounded-3xl p-8 sm:p-10 shadow-2xl modal-content sm:max-w-sm text-center">
+<div id="successModal" class="fixed inset-0 z-[9999] flex p-4 modal-overlay hidden bg-black/50 backdrop-blur-sm overflow-y-auto">
+    <div class="bg-white rounded-3xl p-8 sm:p-10 shadow-2xl modal-content sm:max-w-sm m-auto text-center">
         <div class="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-5">
             <svg class="w-8 h-8 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
         </div>
@@ -511,23 +495,29 @@
 </div>
 
 <!-- Pricing Modal -->
-<div id="pricingModal" class="fixed inset-0 z-[9999] flex items-center justify-center modal-overlay hidden bg-black/50 backdrop-blur-sm">
-    <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-2xl modal-content sm:max-w-lg">
-        <h3 class="text-xl sm:text-2xl font-black text-slate-900 mb-6">Đăng ký gói dịch vụ</h3>
+<div id="pricingModal" class="fixed inset-0 z-[9999] flex p-4 modal-overlay hidden bg-black/50 backdrop-blur-sm overflow-y-auto">
+    <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-2xl modal-content sm:max-w-lg m-auto w-full relative">
+        <button onclick="closePricingModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition z-10 p-2" aria-label="Đóng">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+        <h3 class="text-xl sm:text-2xl font-black text-slate-900 mb-6 pr-10">Đăng ký gói dịch vụ</h3>
         <form id="pricingForm" class="space-y-4" novalidate>
             <input type="text" id="pricingName" placeholder="Họ và tên *" class="input-elegant" required>
             <input type="email" id="pricingEmail" placeholder="Email *" class="input-elegant" required>
             <input type="tel" id="pricingPhone" placeholder="Số điện thoại *" class="input-elegant" required>
             <input type="text" id="pricingCompany" placeholder="Công ty" class="input-elegant">
             <input type="text" id="pricingScale" placeholder="Số lượng sales" class="input-elegant">
-            <div class="relative">
-                <select id="pricingPackage" class="input-elegant" required>
-                    <option value="" disabled selected>Chọn gói mong muốn</option>
-                    <option value="Đội nhóm">Đội nhóm (2.790k/tháng)</option>
-                    <option value="Doanh nghiệp">Doanh nghiệp (8.090k/tháng)</option>
-                    <option value="Cao cấp">Cao cấp (Liên hệ)</option>
-                </select>
-                <svg class="absolute right-5 top-1/2 -translate-y-1/2 w-5 h-5 text-[#4a66a0] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+            <div>
+                <div class="relative">
+                    <select id="pricingPackage" class="input-elegant" required>
+                        <option value="" disabled selected>Chọn gói mong muốn</option>
+                        <option value="Đội nhóm">Đội nhóm</option>
+                        <option value="Doanh nghiệp">Doanh nghiệp</option>
+                        <option value="Cao cấp">Cao cấp</option>
+                    </select>
+                    <svg class="absolute right-5 top-1/2 -translate-y-1/2 w-5 h-5 text-[#4a66a0] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <p class="text-[0.75rem] text-slate-400 mt-2 ml-2">Giá từ <strong>2.790k</strong> đến <strong>8.090k</strong>/tháng · Cao cấp liên hệ</p>
             </div>
             <div class="consent-wrapper">
                 <input type="checkbox" id="pricingConsent" name="consent" required class="consent-checkbox" oninvalid="this.setCustomValidity('Vui lòng đồng ý với Chính sách bảo mật và Điều khoản sử dụng trước khi đăng ký.')" oninput="this.setCustomValidity('')">
@@ -539,18 +529,17 @@
                     của PopMinutes.
                 </label>
             </div>
-            <button type="submit" class="btn-main w-full justify-center py-4">GỬI ĐĂNG KÝ</button>
+            <button type="submit" class="btn-main w-full justify-center py-4 mt-2">GỬI ĐĂNG KÝ</button>
         </form>
-        <button onclick="closePricingModal()" class="mt-4 text-sm text-slate-400 underline mx-auto block">Huỷ bỏ</button>
     </div>
 </div>
 
 <!-- Audio Modal -->
-<div id="audioModal" class="fixed inset-0 z-[10000] flex items-center justify-center modal-overlay hidden bg-black/50 backdrop-blur-sm">
-    <div class="media-modal-content">
+<div id="audioModal" class="fixed inset-0 z-[10000] flex p-4 modal-overlay hidden bg-black/50 backdrop-blur-sm overflow-y-auto">
+    <div class="media-modal-content m-auto">
         <div class="flex justify-between items-center mb-4">
             <h3 class="text-lg sm:text-xl font-black text-slate-900">Nghe thử Audio</h3>
-            <button onclick="closeAudioModal()" class="text-slate-400 hover:text-slate-600 transition">
+            <button onclick="closeAudioModal()" class="text-slate-400 hover:text-slate-600 transition p-1">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
         </div>
@@ -564,11 +553,11 @@
 </div>
 
 <!-- PDF Modal -->
-<div id="pdfModal" class="fixed inset-0 z-[10000] flex items-center justify-center modal-overlay hidden bg-black/50 backdrop-blur-sm">
-    <div class="media-modal-content">
+<div id="pdfModal" class="fixed inset-0 z-[10000] flex p-4 modal-overlay hidden bg-black/50 backdrop-blur-sm overflow-y-auto">
+    <div class="media-modal-content m-auto">
         <div class="flex justify-between items-center mb-4">
             <h3 class="text-lg sm:text-xl font-black text-slate-900">Xem Kết quả (PDF)</h3>
-            <button onclick="closePdfModal()" class="text-slate-400 hover:text-slate-600 transition">
+            <button onclick="closePdfModal()" class="text-slate-400 hover:text-slate-600 transition p-1">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
         </div>
