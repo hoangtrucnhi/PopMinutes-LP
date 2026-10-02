@@ -80,13 +80,18 @@
         @media (max-width: 768px) {
             .wide-container { padding: 0 20px; }
             .title-bold { letter-spacing: -0.03em; }
-            .nav-mini { background-color: #fff !important; backdrop-filter: none !important; }
+            .nav-mini {
+                background-color: #fff !important;
+                backdrop-filter: none !important;
+            }
             .section-dark { background: #1e293b !important; }
         }
         @keyframes floatCard { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-8px); } }
         .float-anim { animation: floatCard 5.5s ease-in-out infinite; }
         .bg-noise { background-image: radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px); background-size: 28px 28px; }
-        .glow-orb { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.22; pointer-events: none; z-index: 0; }
+        .glow-orb {
+            position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.22; pointer-events: none; z-index: 0;
+        }
         .input-elegant {
             width: 100%; padding: 1.1rem 1.5rem; background: #f8fafc; border: 2px solid transparent;
             border-radius: 20px; outline: none; font-weight: 600; font-size: 0.95rem; transition: all 0.3s; color: #1e293b;
@@ -104,24 +109,71 @@
         .modal-overlay:not(.hidden) .modal-content { opacity: 1; transform: scale(1); }
         input:invalid, textarea:invalid, select:invalid { border-color: transparent; box-shadow: none; }
         .media-modal-content {
-            max-width: 90vw; width: 600px; background: white; border-radius: 2rem; padding: 2rem;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.3); transition: inherit; opacity: 0; transform: scale(0.9);
+            max-width: 90vw;
+            width: 600px;
+            background: white;
+            border-radius: 2rem;
+            padding: 2rem;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            transition: inherit;
+            opacity: 0;
+            transform: scale(0.9);
         }
-        .modal-overlay:not(.hidden) .media-modal-content { opacity: 1; transform: scale(1); }
-        .media-modal-content iframe { width: 100%; height: 70vh; max-height: 600px; border: none; border-radius: 1rem; }
-        .toggle-switch { position: relative; display: inline-flex; align-items: center; cursor: pointer; gap: 10px; }
-        .toggle-switch input { opacity: 0; width: 0; height: 0; }
+        .modal-overlay:not(.hidden) .media-modal-content {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .media-modal-content iframe {
+            width: 100%;
+            height: 70vh;
+            max-height: 600px;
+            border: none;
+            border-radius: 1rem;
+        }
+        .toggle-switch {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+            gap: 10px;
+        }
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
         .slider {
-            position: relative; display: inline-block; width: 48px; height: 24px;
-            background-color: #cbd5e1; border-radius: 34px; transition: 0.3s;
+            position: relative;
+            display: inline-block;
+            width: 48px;
+            height: 24px;
+            background-color: #cbd5e1;
+            border-radius: 34px;
+            transition: 0.3s;
         }
         .slider:before {
-            position: absolute; content: ""; height: 20px; width: 20px; left: 2px; bottom: 2px;
-            background-color: white; border-radius: 50%; transition: 0.3s;
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            border-radius: 50%;
+            transition: 0.3s;
         }
-        input:checked + .slider { background-color: var(--popblue); }
-        input:checked + .slider:before { transform: translateX(24px); }
-        .toggle-label { font-weight: 800; font-size: 0.8rem; letter-spacing: 0.02em; color: #ffffff; }
+        input:checked + .slider {
+            background-color: var(--popblue);
+        }
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+        .toggle-label {
+            font-weight: 800;
+            font-size: 0.8rem;
+            letter-spacing: 0.02em;
+            color: #ffffff;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -448,6 +500,7 @@
 <script>
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxrYkvMg1JxGCzuPzdpUaBYIrqZu6DyX2Qh0IXV49OYhAaCb6NHBY9BZFmdBBxLe65i/exec";
 
+    // Audio/PDF modals
     function openAudioModal() { document.getElementById('audioModal').classList.remove('hidden'); }
     function closeAudioModal() {
         document.getElementById('audioModal').classList.add('hidden');
@@ -459,6 +512,7 @@
     document.getElementById('audioModal').addEventListener('click', function(e) { if (e.target === this) closeAudioModal(); });
     document.getElementById('pdfModal').addEventListener('click', function(e) { if (e.target === this) closePdfModal(); });
 
+    // Success modal
     function showModal(title, message) {
         document.getElementById('modalTitle').textContent = title;
         document.getElementById('modalMessage').textContent = message;
@@ -467,6 +521,7 @@
     document.getElementById('modalCloseBtn').onclick = () => document.getElementById('successModal').classList.add('hidden');
     document.getElementById('successModal').onclick = (e) => { if(e.target === e.currentTarget) document.getElementById('successModal').classList.add('hidden'); };
 
+    // Scroll
     function scrollToForm() { document.getElementById('ctaSection').scrollIntoView({ behavior: 'smooth' }); }
     function scrollToDemo() {
         document.getElementById('how').scrollIntoView({ behavior: 'smooth' });
@@ -474,6 +529,7 @@
         if(step1) updateStep(0, step1);
     }
 
+    // Pricing modal
     function openPricingModal(packageName) {
         document.getElementById('pricingPackage').value = packageName;
         document.getElementById('pricingModal').classList.remove('hidden');
@@ -481,6 +537,7 @@
     function closePricingModal() { document.getElementById('pricingModal').classList.add('hidden'); }
     document.getElementById('pricingModal').onclick = (e) => { if(e.target === e.currentTarget) closePricingModal(); };
 
+    // Submit helper
     function submitForm(payload, formElement, successMessage) {
         if(!formElement.checkValidity()) {
             formElement.reportValidity();
@@ -504,6 +561,7 @@
         return true;
     }
 
+    // CTA form
     document.getElementById('ctaForm').addEventListener('submit', function(e) {
         e.preventDefault();
         const payload = {
@@ -516,6 +574,7 @@
         submitForm(payload, this, "Cảm ơn bạn đã đăng ký! Đội ngũ PopHubly sẽ liên hệ trong hôm nay. Hotline/Zalo: 0384744368");
     });
 
+    // Newsletter form
     document.getElementById('newsletterForm').addEventListener('submit', function(e) {
         e.preventDefault();
         const payload = {
@@ -528,6 +587,7 @@
         submitForm(payload, this, "Cảm ơn bạn đã đăng ký nhận tin! Bạn sẽ nhận được các cập nhật mới nhất từ PopMinutes.");
     });
 
+    // Pricing form
     document.getElementById('pricingForm').addEventListener('submit', function(e) {
         e.preventDefault();
         const form = this;
@@ -564,6 +624,7 @@
         });
     });
 
+    // Step preview
     function updateStep(index, el) {
         document.querySelectorAll('.step-trigger').forEach(item => item.classList.remove('active'));
         el.classList.add('active');
@@ -610,6 +671,7 @@
         if(firstStep) updateStep(0, firstStep);
     });
 
+    // Toggle switch
     const toggleCheckbox = document.getElementById('planToggle');
     const priceSpan = document.getElementById('personalPrice');
     const noteDiv = document.getElementById('personalNote');
@@ -631,6 +693,7 @@
         updatePersonalPlan();
     }
 
+    // Reveal
     const revealElements = document.querySelectorAll('.reveal');
     const observerOptions = { threshold: 0.18, rootMargin: '0px 0px -60px 0px' };
     const revealObserver = new IntersectionObserver((entries) => {
