@@ -1693,20 +1693,31 @@
     }
 
     // ================= SUBMIT FORM VỚI SPINNER =================
-    async function submitFormToGAS(formId, buttonId, sourceName, successMessage) {
+        async function submitFormToGAS(formId, buttonId, sourceName, successMessage) {
         const form = document.getElementById(formId);
         const btn = document.getElementById(buttonId);
-        if (!form || !btn) return;
+        if (!form || !btn) {
+            console.warn(`⚠️ Form/Button not found: ${formId}/${buttonId}`);
+            return;
+        }
 
         const originalHTML = btn.innerHTML;
 
         form.addEventListener("submit", async function(e) {
             e.preventDefault();
-            if (!form.checkValidity()) { form.reportValidity(); return; }
 
+            // Kiểm tra validation
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                console.log('❌ Validation failed');
+                return;
+            }
+
+            // Đổi trạng thái nút
             btn.disabled = true;
             btn.innerHTML = '<span class="btn-spinner"></span> Đang gửi...';
 
+            // Chuẩn bị data
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
             data.source = sourceName;
@@ -1715,22 +1726,57 @@
                 data.note = `Công ty: ${data.company || ''}, Số lượng sales: ${data.scale || ''}`;
             }
 
+            console.log('📤 [' + sourceName + '] Submitting:', data);
+
             try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 20000);
+
                 const response = await fetch(SCRIPT_URL, {
                     method: "POST",
                     body: JSON.stringify(data),
-                    headers: { "Content-Type": "text/plain;charset=utf-8" }
+                    headers: { "Content-Type": "text/plain;charset=utf-8" },
+                    signal: controller.signal
                 });
-                const result = await response.json();
-                if (result.result === "success" || response.ok) {
+
+                clearTimeout(timeoutId);
+                console.log('📥 HTTP status:', response.status);
+
+                const text = await response.text();
+                console.log('📥 Response body:', text);
+
+                // Parse JSON an toàn
+                let result;
+                try {
+                    result = JSON.parse(text);
+                } catch (parseError) {
+                    console.error('❌ JSON parse failed:', parseError);
+                    throw new Error('Máy chủ trả về dữ liệu không hợp lệ. Vui lòng thử lại.');
+                }
+
+                console.log('📥 Parsed result:', result);
+
+                // Kiểm tra success theo nhiều format
+                const isSuccess = result.result === "success" 
+                               || result.status === "success"
+                               || result.status === 200
+                               || result.success === true;
+
+                if (isSuccess) {
+                    console.log('✅ Form submitted successfully');
                     showSuccessModal("Thành công", successMessage);
                     form.reset();
                 } else {
+                    console.warn('⚠️ Server returned error:', result);
                     showSuccessModal("Lỗi", result.message || "Có lỗi xảy ra, vui lòng thử lại.");
                 }
             } catch (error) {
-                console.error("Lỗi gửi form:", error);
-                showSuccessModal("Lỗi kết nối", "Không thể kết nối đến máy chủ. Vui lòng kiểm tra mạng.");
+                console.error("❌ Submit error:", error);
+                if (error.name === 'AbortError') {
+                    showSuccessModal("Hết thời gian", "Máy chủ phản hồi chậm. Vui lòng thử lại sau.");
+                } else {
+                    showSuccessModal("Lỗi kết nối", "Không thể kết nối đến máy chủ. Vui lòng kiểm tra mạng.");
+                }
             } finally {
                 btn.disabled = false;
                 btn.innerHTML = originalHTML;
