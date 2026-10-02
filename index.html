@@ -411,15 +411,17 @@
             display: block;
             background: #fff;
         }
-        .pdf-modal .pdf-fallback {
+                .pdf-modal .pdf-fallback-wrap {
             flex: 0 0 auto;
-            align-self: stretch;
-            width: auto;
+            padding: 12px 16px 16px 16px;
+            box-sizing: border-box;
+        }
+        .pdf-modal .pdf-fallback {
+            width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            margin: 12px 16px 16px 16px;
             padding: 13px 18px;
             background: #fff;
             border: 1.5px solid var(--border);
@@ -450,8 +452,10 @@
             .pdf-modal .modal-header {
                 padding: 14px 16px;
             }
+            .pdf-modal .pdf-fallback-wrap {
+                padding: 10px 12px 14px 12px;
+            }
             .pdf-modal .pdf-fallback {
-                margin: 10px 12px 14px 12px;
                 font-size: 13px;
                 padding: 11px 14px;
             }
@@ -956,13 +960,15 @@
                 loading="lazy">
             </iframe>
         </div>
-        <a href="https://docs.google.com/document/d/1N9PJ8FxBhkOYXHG85ryXwCxdx0PjboBZFjSqGrLdcDI/view" 
-           target="_blank" 
-           rel="noopener noreferrer"
-           class="pdf-fallback">
-            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-            Mở tab mới
-        </a>
+                <div class="pdf-fallback-wrap">
+            <a href="https://docs.google.com/document/d/1N9PJ8FxBhkOYXHG85ryXwCxdx0PjboBZFjSqGrLdcDI/view" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               class="pdf-fallback">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                Mở tab mới
+            </a>
+        </div>
     </div>
 </div>
 
