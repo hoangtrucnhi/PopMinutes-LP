@@ -57,6 +57,12 @@
         html {
             scroll-behavior: smooth;
             overflow-x: clip;
+            scroll-padding-top: 80px;
+        }
+        @media (max-width: 640px) {
+        html {
+                scroll-padding-top: 130px;
+            }
         }
 
         body {
@@ -296,7 +302,6 @@
             .nav-links a { font-size: 0.72rem; }
             .nav-logo img { width: 32px; height: 32px; }
             .nav-logo-text { font-size: 1rem; }
-        }
         }
 
         /* ============================================
@@ -732,30 +737,28 @@
             }
         }
                 /* ===== NAV mới có logo ===== */
+                /* ===== NAV — Fixed, 3 items desktop, 2 hàng mobile ===== */
         .nav-mini {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid #edf0f5;
-    width: 100%;
-    padding: 0 24px;
-}
-.nav-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 12px 0;
-}
-@media (max-width: 640px) {
-    .nav-mini { padding: 0 16px; }
-    .nav-inner { flex-direction: column; gap: 10px; padding: 10px 0; }
-}
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid #edf0f5;
+            padding: 12px 40px;
+            box-sizing: border-box;
+        }
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            width: 100%;
+        }
+        /* Logo */
         .nav-logo {
             display: flex;
             align-items: center;
@@ -771,49 +774,78 @@
         }
         .nav-logo-text {
             font-weight: 900;
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #0F172A;
             letter-spacing: -0.02em;
+            text-transform: none !important;
+            white-space: nowrap;
+            line-height: 1;
         }
-        .nav-logo-text .text-minutes {
-            color: var(--navy);
-        }
+        .nav-logo-text .text-minutes { color: var(--navy); }
+        /* Menu */
         .nav-links {
             display: flex;
             align-items: center;
             gap: 2rem;
+            flex: 1;
+            justify-content: center;
         }
         .nav-links a {
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 1rem;
             letter-spacing: 0.05em;
             text-transform: uppercase;
             color: var(--text);
             text-decoration: none;
             transition: color 0.2s;
+            white-space: nowrap;
+            line-height: 1;
         }
-        .nav-links a:hover {
-            color: var(--navy);
+        .nav-links a:hover { color: var(--navy); }
+        /* Body padding để không bị nav che */
+        body {
+            padding-top: 62px;
         }
         @media (max-width: 640px) {
+            body { padding-top: 108px; }
+        }
+
+        /* ===== MOBILE: logo + download cùng hàng, menu xuống dưới ===== */
+        @media (max-width: 640px) {
+            .nav-mini {
+                padding: 10px 16px;
+            }
             .nav-inner {
-                flex-direction: column;
-                gap: 10px;
+                display: grid;
+                grid-template-columns: auto 1fr auto;
+                grid-template-areas:
+                    "logo . download"
+                    "links links links";
+                row-gap: 10px;
+                column-gap: 8px;
                 align-items: center;
             }
+            .nav-logo {
+                grid-area: logo;
+                justify-self: start;
+            }
+            .nav-logo img { width: 32px; height: 32px; }
+            .nav-logo-text { font-size: 0.95rem; }
             .nav-links {
+                grid-area: links;
+                justify-content: center;
                 gap: 1.25rem;
+                flex: none;
             }
-            .nav-links a {
-                font-size: 0.75rem;
+            .nav-links a { font-size: 0.8rem; }
+            .nav-download-btn {
+                grid-area: download;
+                justify-self: end;
+                padding: 8px 14px;
+                font-size: 0.78rem;
+                gap: 5px;
             }
-            .nav-logo img {
-                width: 32px;
-                height: 32px;
-            }
-            .nav-logo-text {
-                font-size: 1rem;
-            }
+            .nav-download-btn i { font-size: 0.78rem; }
         }
 
                 /* ===== FOOTER — 4 cột ===== */
@@ -1036,17 +1068,14 @@
             <span class="nav-logo-text">Pop<span class="text-minutes">Minutes</span></span>
         </a>
         <div class="nav-links">
-    <a href="#features">Nỗi đau</a>
-    <a href="#how">Giải pháp</a>
-    <a href="#pricing">Bảng giá</a>
-    <a href="https://your-app-download-url.com" 
-       target="_blank" 
-       rel="noopener"
-       class="nav-download-btn">
-        <i class="fa-solid fa-download"></i>
-        <span>Tải app</span>
-    </a>
-</div>
+            <a href="#features">Nỗi đau</a>
+            <a href="#how">Giải pháp</a>
+            <a href="#pricing">Bảng giá</a>
+        </div>
+        <a href="https://your-download-link.com" target="_blank" rel="noopener" class="nav-download-btn">
+            <i class="fa-solid fa-download"></i>
+            <span>Tải app</span>
+        </a>
     </div>
 </nav>
 
