@@ -1039,14 +1039,40 @@
             .footer-logo-bottom span { font-size: 1.25rem; }
             .footer-links a { font-size: 0.85rem; }
         }
-        .pricing-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-    margin-bottom: 16px;
-    flex-wrap: nowrap;
-}
+                .pricing-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+            margin-bottom: 16px;
+            flex-wrap: nowrap;
+            min-height: 28px;
+        }
+        .pricing-header h4 {
+            flex: 1 1 auto;
+            min-width: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 0.78rem !important;
+            letter-spacing: 0.1em;
+        }
+        .pricing-header .toggle-switch {
+            flex: 0 0 auto;
+        }
+        @media (max-width: 1280px) and (min-width: 1025px) {
+            .pricing-header h4 {
+                font-size: 0.72rem !important;
+            }
+            .pricing-header .toggle-label {
+                font-size: 0.7rem;
+            }
+        }
+        @media (max-width: 640px) {
+            .pricing-header h4 {
+                font-size: 0.85rem !important;
+            }
+        }
 @media (max-width: 380px) {
     .pricing-header {
         gap: 4px;
@@ -1279,7 +1305,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
             <div class="reveal reveal-delay-1 bg-white/[0.07] backdrop-blur-sm p-6 rounded-[28px] border border-white/10 hover:border-[#2D3FA6]/60 transition-all flex flex-col group">
                 <div class="pricing-header">
-    <h4 class="text-slate-300 font-black text-[0.85rem] sm:text-[0.95rem] uppercase tracking-[0.18em]">Trải nghiệm</h4>
+    <h4 class="text-slate-300 font-black text-[0.85rem] sm:text-[0.95rem] uppercase tracking-[0.18em]">Dùng thử</h4>
     <label class="toggle-switch">
         <span class="toggle-label">3 tháng</span>
         <input type="checkbox" id="planToggle">
