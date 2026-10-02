@@ -378,16 +378,12 @@
             box-sizing: border-box;
         }
 
-        /* ===== PDF modal: header cố định, iframe co giãn, nút luôn hiển thị ===== */
+                /* ===== PDF modal: bỏ padding để trang giấy chạm biên ===== */
         .modal-box.pdf-modal {
             padding: 0;
-            display: flex;
-            flex-direction: column;
             overflow: hidden;
-            max-height: calc(100vh - 32px);
         }
         .pdf-modal .modal-header {
-            flex-shrink: 0;
             padding: 16px 20px;
             margin-bottom: 0;
             border-bottom: 1px solid var(--border);
@@ -396,29 +392,30 @@
             font-size: 16px;
         }
         .pdf-viewer-full {
-            flex: 1 1 auto;
-            min-height: 0;
             width: 100%;
-            overflow: hidden;
             background: #F1F5F9;
             border: none;
         }
         .pdf-viewer-full iframe {
             width: 100%;
-            height: 100%;
+            height: 72vh;
+            min-height: 420px;
+            max-height: 720px;
             border: none;
             display: block;
             background: #fff;
         }
         .pdf-modal .pdf-fallback {
-            flex-shrink: 0;
             margin: 12px 16px 16px;
             width: calc(100% - 32px);
-            box-sizing: border-box;
         }
         @media (max-width: 640px) {
             .pdf-modal .modal-header {
                 padding: 14px 16px;
+            }
+            .pdf-viewer-full iframe {
+                height: 68vh;
+                min-height: 380px;
             }
             .pdf-modal .pdf-fallback {
                 margin: 10px 12px 14px;
