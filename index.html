@@ -1329,7 +1329,7 @@
     </label>
 </div>
                 <div id="personalNote" class="bg-[#1B2B7A]/20 border border-[#2D3FA6]/50 text-blue-50 text-[0.8rem] font-semibold p-3.5 rounded-2xl mb-5 leading-relaxed">
-                    14 ngày đầu tiên với 0đ.<br>Không cần thẻ tín dụng.
+                    14 ngày miễn phí.<br>Không cần thẻ tín dụng.
                 </div>
                 <div class="text-3xl font-black mb-2 text-white">
                     <span id="personalPrice">319k</span> <span class="text-xs text-slate-300 font-medium">/ tháng</span>
@@ -1803,12 +1803,12 @@
     function updatePersonalPlan() {
         if (toggleCheckbox.checked) {
             priceSpan.innerText = '269k';
-            noteDiv.innerHTML = '14 ngày đầu tiên với 0đ.<br>Không cần thẻ tín dụng.';
+            noteDiv.innerHTML = '14 ngày miễn phí.<br>Không cần thẻ tín dụng.';
             priceHint.classList.remove('hidden');
             priceHint.innerText = '(thanh toán 807k cho 3 tháng)';
         } else {
             priceSpan.innerText = '319k';
-            noteDiv.innerHTML = '14 ngày đầu tiên với 0đ.<br>Không cần thẻ tín dụng.';
+            noteDiv.innerHTML = '14 ngày miễn phí.<br>Không cần thẻ tín dụng.';
             priceHint.classList.add('hidden');
         }
     }
