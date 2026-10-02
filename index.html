@@ -255,7 +255,16 @@
         }
         .nav-mini { gap: 2rem; }
         @media (max-width: 480px) {
-            .nav-mini a { font-size: 0.7rem; }
+        .nav-links a {
+            font-weight: 500;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        .nav-logo,
+        .nav-logo-text {
+            text-transform: none !important;
+        }
             .nav-mini { gap: 1rem; }
         }
 
@@ -769,17 +778,17 @@
             }
         }
 
-                /* ===== FOOTER mới — 4 cột, nền sáng ===== */
+                /* ===== FOOTER mới — 3 cột, nền sáng, tinh tế ===== */
         .site-footer {
             background: #F8FAFC;
-            color: #475569;
+            color: #64748B;
             padding: 56px 0 24px;
             border-top: 1px solid #E2E8F0;
         }
         .footer-grid {
             display: grid;
-            grid-template-columns: 1.3fr 1fr 1fr 1fr;
-            gap: 40px;
+            grid-template-columns: 1fr 1.7fr 1.3fr;
+            gap: 48px;
             padding-bottom: 40px;
             border-bottom: 1px solid #E2E8F0;
         }
@@ -791,6 +800,10 @@
             color: #94A3B8;
             margin-bottom: 18px;
         }
+        .footer-col-title.mt {
+            margin-top: 28px;
+        }
+
         /* ==== CỘT 1: THÔNG TIN CHUNG ==== */
         .footer-info-block {
             display: flex;
@@ -800,7 +813,7 @@
         .footer-company-name {
             font-weight: 800;
             font-size: 0.92rem;
-            color: #0F172A;
+            color: #334155;
             letter-spacing: 0.01em;
             line-height: 1.4;
         }
@@ -813,27 +826,22 @@
             flex-wrap: wrap;
         }
         .footer-info-line strong {
-            color: #475569;
+            color: #64748B;
             font-weight: 600;
-            min-width: 0;
         }
         .footer-info-line a {
             color: #64748B;
             text-decoration: none;
             transition: color 0.2s;
-            word-break: break-word;
         }
         .footer-info-line a:hover {
             color: var(--navy);
         }
-        /* Logo ở dưới info công ty (cột 1) */
         .footer-logo-bottom {
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-top: 16px;
-            padding-top: 16px;
-            border-top: 1px dashed #CBD5E1;
+            margin-top: 20px;
         }
         .footer-logo-bottom img {
             width: 40px;
@@ -845,7 +853,7 @@
         .footer-logo-bottom span {
             font-weight: 900;
             font-size: 1.05rem;
-            color: #0F172A;
+            color: #334155;
             letter-spacing: -0.02em;
         }
         .footer-logo-bottom span .text-minutes {
@@ -863,7 +871,7 @@
             align-items: flex-start;
             gap: 10px;
             font-size: 0.88rem;
-            color: #475569;
+            color: #64748B;
             line-height: 1.55;
         }
         .footer-contact-item i {
@@ -875,7 +883,7 @@
             margin-top: 3px;
         }
         .footer-contact-item a {
-            color: #475569;
+            color: #64748B;
             text-decoration: none;
             transition: color 0.2s;
         }
@@ -884,39 +892,37 @@
         }
         .footer-socials {
             display: flex;
-            gap: 10px;
-            margin-top: 16px;
-            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 18px;
         }
         .footer-socials a {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            background: #fff;
-            border: 1px solid #E2E8F0;
+            width: 34px;
+            height: 34px;
+            background: transparent;
+            border: none;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #64748B;
-            font-size: 15px;
+            color: #94A3B8;
+            font-size: 18px;
             text-decoration: none;
             transition: all 0.2s;
+            border-radius: 8px;
         }
         .footer-socials a:hover {
-            border-color: var(--navy);
             color: var(--navy);
+            background: rgba(27, 43, 122, 0.06);
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(27, 43, 122, 0.12);
         }
 
-        /* ==== CỘT 3 & 4: LINKS ==== */
+        /* ==== CỘT 3: CHÍNH SÁCH + HỢP TÁC ==== */
         .footer-links {
             display: flex;
             flex-direction: column;
             gap: 11px;
         }
         .footer-links a {
-            color: #475569;
+            color: #64748B;
             text-decoration: none;
             font-size: 0.88rem;
             font-weight: 500;
@@ -932,7 +938,7 @@
         }
         .footer-links a::before {
             content: '→';
-            color: #94A3B8;
+            color: #CBD5E1;
             font-size: 0.78rem;
             transition: color 0.2s;
             flex-shrink: 0;
@@ -948,14 +954,24 @@
             font-size: 0.72rem;
             font-weight: 700;
             letter-spacing: 0.15em;
-            color: #94A3B8;
+            color: #A0AEC0;
         }
 
         /* ==== RESPONSIVE ==== */
         @media (max-width: 1024px) {
             .footer-grid {
+                grid-template-columns: 1fr 1.4fr;
+                gap: 32px;
+            }
+            .footer-grid > div:nth-child(3) {
+                grid-column: 1 / -1;
+                margin-top: 8px;
+                display: grid;
                 grid-template-columns: 1fr 1fr;
                 gap: 32px;
+            }
+            .footer-col-title.mt {
+                margin-top: 0;
             }
         }
         @media (max-width: 640px) {
@@ -967,6 +983,13 @@
                 gap: 28px;
                 padding-bottom: 28px;
             }
+            .footer-grid > div:nth-child(3) {
+                display: block;
+                margin-top: 0;
+            }
+            .footer-col-title.mt {
+                margin-top: 28px;
+            }
             .footer-logo-bottom img {
                 width: 36px;
                 height: 36px;
@@ -974,16 +997,13 @@
             .footer-logo-bottom span {
                 font-size: 1rem;
             }
-            .footer-links {
-                gap: 10px;
-            }
             .footer-links a {
                 font-size: 0.85rem;
             }
             .footer-socials a {
-                width: 34px;
-                height: 34px;
-                font-size: 14px;
+                width: 32px;
+                height: 32px;
+                font-size: 16px;
             }
         }
     </style>
@@ -1312,7 +1332,7 @@
                 </div>
             </div>
 
-            <!-- ==== CỘT 3: CHÍNH SÁCH & ĐIỀU KHOẢN ==== -->
+            <!-- ==== CỘT 3: CHÍNH SÁCH + HỢP TÁC ==== -->
             <div>
                 <div class="footer-col-title">Chính sách &amp; Điều khoản</div>
                 <div class="footer-links">
@@ -1322,11 +1342,8 @@
                     <a href="https://pophubly.com/quy-trinh-thanh-toan/" target="_blank" rel="noopener">Quy trình thanh toán</a>
                     <a href="https://pophubly.com/quy-trinh-khieu-nai/" target="_blank" rel="noopener">Quy trình khiếu nại</a>
                 </div>
-            </div>
 
-            <!-- ==== CỘT 4: HỢP TÁC ==== -->
-            <div>
-                <div class="footer-col-title">Hợp tác</div>
+                <div class="footer-col-title mt">Hợp tác</div>
                 <div class="footer-links">
                     <a href="#">Đối tác địa điểm</a>
                     <a href="#">Đối tác chiến lược</a>
