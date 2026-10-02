@@ -23,15 +23,14 @@
             -moz-osx-font-smoothing: grayscale;
         }
         ::selection { background: var(--popblue); color: #fff; }
+        .title-bold { font-weight: 900; letter-spacing: -0.045em; line-height: 1.15; }
 
-        /* FIX: giảm line-height để heading không bị giãn dòng */
-        .title-bold {
-            font-weight: 900;
-            letter-spacing: -0.045em;
-            line-height: 1.15;
+        /* FIX: cân bằng dòng chữ tiêu đề, không bị bẻ 1-2 chữ */
+        h1, h2, h3, h4 {
+            text-wrap: balance;
+            word-break: keep-all;
+            overflow-wrap: break-word;
         }
-        /* FIX: cho heading tiếng Việt không bị bẻ chữ lung tung */
-        h1, h2, h3, h4 { word-break: keep-all; overflow-wrap: break-word; }
 
         .text-gradient { color: #4a66a0; }
         .text-gradient-light { color: #c4d1f0; }
@@ -54,7 +53,10 @@
         .reveal-delay-3 { transition-delay: 0.36s; }
         .step-trigger {
             opacity: 0.45; transition: all 0.45s cubic-bezier(0.16, 0.67, 0.29, 0.99);
-            border-left: 3px solid transparent; padding-left: 2rem; cursor: pointer; border-radius: 0 8px 8px 0;
+            border-left: 3px solid transparent; padding-left: 1.5rem; cursor: pointer; border-radius: 0 8px 8px 0;
+        }
+        @media (min-width: 640px) {
+            .step-trigger { padding-left: 2rem; }
         }
         .step-trigger.active {
             opacity: 1; border-left-color: var(--popblue);
@@ -85,9 +87,19 @@
             border: 2px solid #e2e8f0; color: #1e293b; transition: all 0.3s;
         }
         .btn-outline:hover { border-color: var(--popblue); color: var(--popblue); background: rgba(74,102,160,0.03); }
-        .wide-container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+
+        /* FIX: nút nhỏ gọn trên mobile để nằm cùng hàng */
+        @media (max-width: 640px) {
+            .btn-main { padding: 0.75rem 1.2rem !important; font-size: 0.72rem !important; gap: 5px !important; }
+            .btn-outline { padding: 0.75rem 1.2rem !important; font-size: 0.72rem !important; gap: 5px !important; }
+            .btn-main svg, .btn-outline svg { width: 14px !important; height: 14px !important; }
+        }
+
+        .wide-container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+        @media (min-width: 768px) {
+            .wide-container { padding: 0 40px; }
+        }
         @media (max-width: 768px) {
-            .wide-container { padding: 0 20px; }
             .nav-mini { background-color: #fff !important; backdrop-filter: none !important; }
             .section-dark { background: #1e293b !important; }
         }
@@ -103,11 +115,14 @@
         .input-elegant::placeholder { color: #94a3b8; font-weight: 500; }
         #step-preview { transition: opacity 0.35s ease, transform 0.35s ease; }
         .label-sm { font-size: 0.8rem; letter-spacing: 0.18em; }
-        .label-md { font-size: 0.85rem; letter-spacing: 0.2em; }
+        .label-md { font-size: 0.75rem; letter-spacing: 0.18em; }
+        @media (min-width: 640px) {
+            .label-md { font-size: 0.85rem; letter-spacing: 0.2em; }
+        }
         .nav-mini a { font-weight: 500; font-size: 1rem; letter-spacing: 0.05em; text-transform: uppercase; }
         .nav-mini { gap: 2rem; }
         @media (max-width: 480px) {
-            .nav-mini a { font-size: 0.75rem; }
+            .nav-mini a { font-size: 0.7rem; }
             .nav-mini { gap: 1rem; }
         }
         .modal-overlay { transition: opacity 0.3s ease; }
@@ -148,9 +163,22 @@
             width: 100%; height: 100%; color: var(--popblue);
         }
         .consent-checkbox:focus { outline: none; box-shadow: 0 0 0 3px rgba(74, 102, 160, 0.15); }
-        .consent-label { font-size: 0.875rem; color: #475569; font-weight: 500; line-height: 1.5; cursor: pointer; margin: 0; padding: 0; }
+        .consent-label { font-size: 0.85rem; color: #475569; font-weight: 500; line-height: 1.5; cursor: pointer; margin: 0; padding: 0; }
         .consent-link { color: var(--popblue); font-weight: 700; text-decoration: underline; text-underline-offset: 2px; transition: color 0.2s; }
         .consent-link:hover { color: var(--popblue-deep); }
+
+        /* FIX: preview box responsive, không tràn nội dung */
+        #step-preview {
+            min-height: 380px;
+            padding: 1.5rem;
+        }
+        @media (min-width: 640px) {
+            #step-preview {
+                min-height: 420px;
+                aspect-ratio: 4 / 3;
+                padding: 3rem;
+            }
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -165,25 +193,27 @@
 </nav>
 
 <!-- Hero -->
-<section class="pt-12 pb-20 sm:pb-36 section-white bg-noise relative overflow-hidden">
+<section class="pt-10 pb-20 sm:pt-12 sm:pb-36 section-white bg-noise relative overflow-hidden">
     <div class="wide-container grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center relative z-10">
         <div class="reveal active">
             <div class="inline-flex items-center gap-2 bg-[#f1f5f9] px-4 py-2 rounded-full text-[0.7rem] sm:text-xs font-bold uppercase tracking-widest text-[#4a66a0] mb-6 sm:mb-8">
                 <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> Đã có mặt 100+ chỗ ngồi Cafe
             </div>
-            <h1 class="title-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-6 sm:mb-10">
-                Chốt Sales tại quán, <br><span class="text-gradient">Biên bản để AI lo.</span>
+            <!-- FIX: giảm size desktop để "quán" không rớt dòng + text-wrap balance -->
+            <h1 class="title-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-6 sm:mb-10">
+                Chốt Sales tại quán,<br><span class="text-gradient">Biên bản để AI lo.</span>
             </h1>
             <p class="text-base sm:text-lg text-slate-500 mb-8 sm:mb-10 max-w-lg font-medium leading-relaxed">
                 Giải pháp toàn diện cho <strong class="text-slate-800">Team Sales</strong>: Đặt chỗ gặp khách tại mạng lưới Cafe chọn lọc & Tự động ghi chép, gửi email báo cáo cho sếp/khách hàng ngay sau khi đứng dậy.
             </p>
-            <div class="flex flex-wrap gap-3 sm:gap-4 items-center mt-6 sm:mt-8">
-                <button onclick="scrollToForm()" class="btn-main text-sm sm:text-base">
+            <!-- FIX: bỏ flex-wrap, giữ 2 nút cùng hàng -->
+            <div class="flex flex-row items-center gap-2 sm:gap-4 mt-6 sm:mt-8">
+                <button onclick="scrollToForm()" class="btn-main">
                     DÙNG THỬ
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                 </button>
-                <button onclick="scrollToDemo()" class="btn-outline group text-sm sm:text-base">
-                    <svg class="w-5 h-5 text-[#4a66a0]" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                <button onclick="scrollToDemo()" class="btn-outline group">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-[#4a66a0]" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                     XEM DEMO
                 </button>
             </div>
@@ -197,9 +227,9 @@
                     <div class="w-8 h-8 sm:w-10 sm:h-10 bg-emerald-500 rounded-full flex items-center justify-center text-white shadow-lg shadow-emerald-200 flex-shrink-0">
                         <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
                     </div>
-                    <span class="font-bold text-slate-900 text-xs sm:text-sm">Email đã gửi cho Sales/Manager/Khách</span>
+                    <span class="font-bold text-slate-900 text-[0.7rem] sm:text-sm leading-tight">Email đã gửi cho Sales/Manager/Khách</span>
                 </div>
-                <p class="text-[0.65rem] sm:text-[0.75rem] text-slate-400 font-bold uppercase tracking-[0.15em] mb-2">Tóm tắt buổi làm việc</p>
+                <p class="text-[0.6rem] sm:text-[0.75rem] text-slate-400 font-bold uppercase tracking-[0.15em] mb-2">Tóm tắt buổi làm việc</p>
                 <div class="h-2 w-full bg-slate-100 rounded-full mb-2"></div>
                 <div class="h-2 w-3/4 bg-slate-100 rounded-full"></div>
             </div>
@@ -212,31 +242,31 @@
     <div class="wide-container">
         <div class="text-center mb-12 sm:mb-20 reveal">
             <span class="text-[#4a66a0] font-black text-xs sm:text-sm uppercase tracking-[0.2em]">Tại sao chọn PopMinutes</span>
-            <h2 class="title-bold text-3xl sm:text-4xl md:text-5xl mt-4 sm:mt-6 mb-6 sm:mb-10">
+            <h2 class="title-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl mt-4 sm:mt-6 mb-6 sm:mb-10">
                 Đừng để buổi gặp khách chỉ là <br><span class="text-gradient">một buổi nói chuyện rồi quên.</span>
             </h2>
-            <p class="text-slate-500 text-base sm:text-lg max-w-2xl mx-auto">Ba vấn đề lớn nhất của sales khi gặp khách ngoài văn phòng – và cách PopMinutes giải quyết triệt để.</p>
+            <p class="text-slate-500 text-sm sm:text-lg max-w-2xl mx-auto">Ba vấn đề lớn nhất của sales khi gặp khách ngoài văn phòng – và cách PopMinutes giải quyết triệt để.</p>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-10">
-            <div class="reveal reveal-delay-1 group bg-white p-6 sm:p-10 rounded-[28px] sm:rounded-[36px] shadow-lg shadow-slate-100 hover:shadow-2xl hover:shadow-slate-200/60 transition-all duration-500 border border-transparent hover:border-slate-100">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-10">
+            <div class="reveal reveal-delay-1 group bg-white p-6 sm:p-10 rounded-[24px] sm:rounded-[36px] shadow-lg shadow-slate-100 hover:shadow-2xl hover:shadow-slate-200/60 transition-all duration-500 border border-transparent hover:border-slate-100">
                 <div class="w-14 h-14 sm:w-18 sm:h-18 bg-[#f4f6fc] group-hover:bg-[#4a66a0] rounded-2xl sm:rounded-3xl flex items-center justify-center mb-6 sm:mb-8 transition-all duration-500 group-hover:shadow-xl group-hover:shadow-[#4a66a0]/20">
                     <svg class="w-7 h-7 sm:w-9 sm:h-9 text-[#4a66a0] group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                 </div>
-                <h3 class="text-lg sm:text-xl md:text-2xl font-black mb-3 sm:mb-4 leading-snug text-slate-900">Quán ồn, hết chỗ,<br>chỗ ngồi không chuyên nghiệp</h3>
+                <h3 class="text-base sm:text-xl md:text-2xl font-black mb-3 sm:mb-4 leading-snug text-slate-900">Quán ồn, hết chỗ,<br>chỗ ngồi không chuyên nghiệp</h3>
                 <p class="text-slate-500 font-medium leading-relaxed text-sm sm:text-[0.95rem]">Bạn đến chỗ hẹn nhưng quán hết chỗ, hay quán quá ồn? <strong>Hệ sinh thái</strong> quán đối tác được chọn lọc theo tiêu chuẩn, cam kết không gian phù hợp gặp khách – đối tác nhìn bạn chuyên nghiệp ngay từ phút đầu.</p>
             </div>
-            <div class="reveal reveal-delay-2 group bg-white p-6 sm:p-10 rounded-[28px] sm:rounded-[36px] shadow-lg shadow-slate-100 hover:shadow-2xl hover:shadow-slate-200/60 transition-all duration-500 border border-transparent hover:border-slate-100">
+            <div class="reveal reveal-delay-2 group bg-white p-6 sm:p-10 rounded-[24px] sm:rounded-[36px] shadow-lg shadow-slate-100 hover:shadow-2xl hover:shadow-slate-200/60 transition-all duration-500 border border-transparent hover:border-slate-100">
                 <div class="w-14 h-14 sm:w-18 sm:h-18 bg-[#f4f6fc] group-hover:bg-[#4a66a0] rounded-2xl sm:rounded-3xl flex items-center justify-center mb-6 sm:mb-8 transition-all duration-500 group-hover:shadow-xl group-hover:shadow-[#4a66a0]/20">
                     <svg class="w-7 h-7 sm:w-9 sm:h-9 text-[#4a66a0] group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
                 </div>
-                <h3 class="text-lg sm:text-xl md:text-2xl font-black mb-3 sm:mb-4 leading-snug text-slate-900">Ghi chú bằng tay,<br>tự nhớ, sót nội dung quan trọng</h3>
+                <h3 class="text-base sm:text-xl md:text-2xl font-black mb-3 sm:mb-4 leading-snug text-slate-900">Ghi chú bằng tay,<br>tự nhớ, sót nội dung quan trọng</h3>
                 <p class="text-slate-500 font-medium leading-relaxed text-sm sm:text-[0.95rem]">Khách nói cần báo giá trước thứ Sáu để kịp duyệt – bạn có nhớ? <strong>PopMinutes AI</strong> bắt trọn từng câu, biến thành biên bản chuẩn xác. Mọi thông tin quan trọng mà bạn có thể bỏ sót đều được tóm tắt đầy đủ.</p>
             </div>
-            <div class="reveal reveal-delay-3 group bg-white p-6 sm:p-10 rounded-[28px] sm:rounded-[36px] shadow-lg shadow-slate-100 hover:shadow-2xl hover:shadow-slate-200/60 transition-all duration-500 border border-transparent hover:border-slate-100">
+            <div class="reveal reveal-delay-3 group bg-white p-6 sm:p-10 rounded-[24px] sm:rounded-[36px] shadow-lg shadow-slate-100 hover:shadow-2xl hover:shadow-slate-200/60 transition-all duration-500 border border-transparent hover:border-slate-100">
                 <div class="w-14 h-14 sm:w-18 sm:h-18 bg-[#f4f6fc] group-hover:bg-[#4a66a0] rounded-2xl sm:rounded-3xl flex items-center justify-center mb-6 sm:mb-8 transition-all duration-500 group-hover:shadow-xl group-hover:shadow-[#4a66a0]/20">
                     <svg class="w-7 h-7 sm:w-9 sm:h-9 text-[#4a66a0] group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                 </div>
-                <h3 class="text-lg sm:text-xl md:text-2xl font-black mb-3 sm:mb-4 leading-snug text-slate-900">Kết thúc họp,<br>quên follow‑up ngay</h3>
+                <h3 class="text-base sm:text-xl md:text-2xl font-black mb-3 sm:mb-4 leading-snug text-slate-900">Kết thúc họp,<br>quên follow‑up ngay</h3>
                 <p class="text-slate-500 font-medium leading-relaxed text-sm sm:text-[0.95rem]">Bạn vừa rời quán, trên đường trở về công ty, tóm tắt đã gửi đến email cá nhân và sếp/khách (tùy chọn). Không cần phải nhớ follow‑up. Tiết kiệm thời gian để chuẩn bị cho buổi gặp khác.</p>
             </div>
         </div>
@@ -247,27 +277,27 @@
 <section id="how" class="py-20 sm:py-32 section-white relative overflow-hidden">
     <div class="glow-orb w-[400px] h-[400px] bg-[#eef1fa] top-[10%] right-[-120px]" style="opacity:0.3;"></div>
     <div class="wide-container relative z-10">
-        <h2 class="title-bold text-3xl sm:text-4xl md:text-5xl mb-12 sm:mb-24 text-center">Các giải pháp trong <span class="text-[#4a66a0]">PopMinutes App</span></h2>
+        <h2 class="title-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-12 sm:mb-24 text-center">Các giải pháp trong <span class="text-[#4a66a0]">PopMinutes App</span></h2>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-20 items-center">
             <div class="space-y-8 sm:space-y-14">
                 <div class="step-trigger active" id="step1" onclick="updateStep(0, this)">
                     <span class="label-md font-black uppercase text-[#4a66a0] mb-2 sm:mb-3 block">Giải pháp 01</span>
-                    <h3 class="text-xl sm:text-2xl md:text-3xl font-black mb-2 leading-snug">AI chuyển toàn bộ file ghi âm thành biên bản</h3>
+                    <h3 class="text-lg sm:text-2xl md:text-3xl font-black mb-2 leading-snug">AI chuyển toàn bộ file ghi âm thành biên bản</h3>
                     <p class="text-sm sm:text-base text-slate-500 font-medium">Kèm theo <strong>toàn bộ đoạn hội thoại</strong> được chuyển thành văn bản, rõ từng người nói.</p>
                 </div>
                 <div class="step-trigger" onclick="updateStep(1, this)">
                     <span class="label-md font-black uppercase text-[#4a66a0] mb-2 sm:mb-3 block">Giải pháp 02</span>
-                    <h3 class="text-xl sm:text-2xl md:text-3xl font-black leading-snug">Nhận biên bản tức thì qua email</h3>
+                    <h3 class="text-lg sm:text-2xl md:text-3xl font-black leading-snug">Nhận biên bản tức thì qua email</h3>
                     <p class="text-sm sm:text-base text-slate-500 font-medium">Sau khi buổi họp kết thúc, biên bản tự động gửi đến bạn, sếp và khách hàng.</p>
                 </div>
                 <div class="step-trigger" onclick="updateStep(2, this)">
                     <span class="label-md font-black uppercase text-[#4a66a0] mb-2 sm:mb-3 block">Giải pháp 03</span>
-                    <h3 class="text-xl sm:text-2xl md:text-3xl font-black leading-snug">Linh hoạt sử dụng chỗ ngồi tại quán cafe chọn lọc</h3>
+                    <h3 class="text-lg sm:text-2xl md:text-3xl font-black leading-snug">Linh hoạt sử dụng chỗ ngồi tại quán cafe chọn lọc</h3>
                     <p class="text-sm sm:text-base text-slate-500 font-medium">Hệ thống <strong>quán</strong> với app check-in/check-out minh bạch.</p>
                 </div>
             </div>
             <div class="reveal">
-                <div id="step-preview" class="bg-[#0b1628] aspect-[4/3] rounded-[32px] sm:rounded-[48px] overflow-hidden shadow-2xl border-[8px] sm:border-[16px] border-[#f1f5f9] flex items-center justify-center p-6 sm:p-12 text-white text-center transition-all duration-500">
+                <div id="step-preview" class="bg-[#0b1628] rounded-[24px] sm:rounded-[48px] overflow-hidden shadow-2xl border-[8px] sm:border-[16px] border-[#f1f5f9] flex items-center justify-center text-white text-center transition-all duration-500">
                 </div>
             </div>
         </div>
@@ -280,7 +310,7 @@
     <div class="wide-container relative z-10">
         <div class="text-center mb-12 sm:mb-20 reveal">
             <span class="text-[#8ea5d9] font-black text-xs sm:text-sm uppercase tracking-[0.2em]">Bảng giá chi tiết</span>
-            <h2 class="title-bold text-3xl sm:text-4xl md:text-5xl mt-4 sm:mt-6 mb-6 sm:mb-10">Đầu tư vào sự <span class="text-gradient-light">Hiệu quả</span></h2>
+            <h2 class="title-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl mt-4 sm:mt-6 mb-6 sm:mb-10">Đầu tư vào sự <span class="text-gradient-light">Hiệu quả</span></h2>
             <p class="text-slate-300 font-medium text-base sm:text-lg max-w-xl mx-auto">Không phí khởi tạo. Chọn gói phù hợp với quy mô.</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
@@ -371,7 +401,7 @@
     <div class="wide-container">
         <div class="bg-white rounded-[32px] sm:rounded-[48px] shadow-2xl shadow-slate-200/60 p-6 sm:p-16 lg:p-20 grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16 reveal border border-slate-50">
             <div class="flex flex-col justify-center">
-                <h2 class="title-bold text-3xl sm:text-4xl md:text-5xl mb-6 sm:mb-8">Sẵn sàng để<br><span class="text-gradient">tăng trưởng 3.7x doanh số?</span></h2>
+                <h2 class="title-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-6 sm:mb-8">Sẵn sàng để<br><span class="text-gradient">tăng trưởng 3.7x doanh số?</span></h2>
                 <p class="text-base sm:text-lg text-slate-500 font-medium leading-relaxed mb-2">
                     Để lại thông tin của bạn. Đội ngũ <strong>PopHubly</strong> sẽ liên hệ để setup bản Demo miễn phí và tặng bạn voucher trải nghiệm PopMinutes AI đầu tiên.
                 </p>
@@ -405,8 +435,8 @@
     <div class="absolute top-0 right-0 w-96 h-96 bg-[#4a66a0] opacity-30 rounded-full blur-[100px] pointer-events-none"></div>
     <div class="absolute bottom-0 left-0 w-64 h-64 bg-emerald-500 opacity-20 rounded-full blur-[80px] pointer-events-none"></div>
     <div class="wide-container relative z-10 text-center">
-        <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4 sm:mb-6">Bạn muốn nâng tầm đội ngũ Sales?</h2>
-        <p class="text-slate-300 text-base sm:text-lg mb-10 sm:mb-16 max-w-2xl mx-auto">Đăng ký nhận email để cập nhật tính năng mới nhất từ PopMinutes App và các cẩm nang Sales.</p>
+        <h2 class="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4 sm:mb-6">Bạn muốn nâng tầm đội ngũ Sales?</h2>
+        <p class="text-slate-300 text-sm sm:text-lg mb-10 sm:mb-16 max-w-2xl mx-auto">Đăng ký nhận email để cập nhật tính năng mới nhất từ PopMinutes App và các cẩm nang Sales.</p>
         <form id="newsletterForm" class="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4 max-w-2xl mx-auto mt-6" novalidate>
             <input type="email" id="newsletterEmail" placeholder="Nhập địa chỉ email của bạn..." class="flex-1 w-full px-6 sm:px-8 py-4 sm:py-5 rounded-full bg-white/10 border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:border-[#4a66a0] focus:bg-white/20 transition-all font-medium" required>
             <button type="submit" class="btn-main py-4 sm:py-5 px-8 sm:px-10 text-sm whitespace-nowrap !shadow-none border border-[#4a66a0]">ĐĂNG KÝ NGAY</button>
@@ -621,36 +651,36 @@
     function updateStep(index, el) {
         document.querySelectorAll('.step-trigger').forEach(item => item.classList.remove('active'));
         el.classList.add('active');
+        // FIX: đổi tất cả icon sang xanh dương (#4a66a0) để đồng bộ
         const previews = [
-            /* FIX: đổi icon ghi âm từ bg-[#4a66a0] (xanh dương) → bg-emerald-500 (xanh lá) */
-            `<div class="space-y-6">
-                <div class="w-20 h-20 sm:w-24 sm:h-24 bg-emerald-500 rounded-full mx-auto flex items-center justify-center mb-6 shadow-xl shadow-emerald-500/30">
-                    <svg class="w-9 h-9 sm:w-12 sm:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+            `<div class="space-y-4 sm:space-y-6">
+                <div class="w-16 h-16 sm:w-24 sm:h-24 bg-[#4a66a0] rounded-full mx-auto flex items-center justify-center mb-4 sm:mb-6 shadow-xl shadow-[#4a66a0]/30">
+                    <svg class="w-8 h-8 sm:w-12 sm:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
                 </div>
-                <h4 class="text-xl sm:text-2xl font-bold text-white">Transcript đầy đủ, chính xác đến từng từ</h4>
-                <div class="flex flex-col sm:flex-row justify-center gap-3 mt-8">
-                    <button onclick="openAudioModal()" class="px-5 sm:px-6 py-2.5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl text-sm font-bold flex items-center justify-center gap-2 transition-all">
+                <h4 class="text-lg sm:text-2xl font-bold text-white leading-snug">Transcript đầy đủ, chính xác đến từng từ</h4>
+                <div class="flex flex-col sm:flex-row justify-center gap-3 mt-5 sm:mt-8">
+                    <button onclick="openAudioModal()" class="px-4 sm:px-6 py-2.5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18.5a6.5 6.5 0 100-13 6.5 6.5 0 000 13zM12 11v3m0 0l-1.5-1.5M12 14l1.5-1.5"/></svg>
                         1. File ghi âm
                     </button>
-                    <button onclick="openPdfModal()" class="px-5 sm:px-6 py-2.5 bg-emerald-500 hover:bg-emerald-600 rounded-xl text-sm font-bold flex items-center justify-center gap-2 transition-all shadow-lg">
+                    <button onclick="openPdfModal()" class="px-4 sm:px-6 py-2.5 bg-[#4a66a0] hover:bg-[#364f82] rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all shadow-lg">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                         2. Kết quả
                     </button>
                 </div>
             </div>`,
-            `<div class="space-y-5 text-left px-2 sm:px-6">
-                <div class="text-emerald-400 font-black text-sm mb-4">TO: sales@pophubly.com</div>
-                <div class="text-white text-lg sm:text-xl font-bold mb-2">[PopHubly] Tóm Tắt Buổi Làm Việc...</div>
+            `<div class="space-y-4 sm:space-y-5 text-left px-2 sm:px-6 w-full">
+                <div class="text-emerald-400 font-black text-xs sm:text-sm mb-3 sm:mb-4">TO: sales@pophubly.com</div>
+                <div class="text-white text-base sm:text-xl font-bold mb-2 leading-snug">[PopHubly] Tóm Tắt Buổi Làm Việc...</div>
                 <div class="h-px w-full bg-slate-700 mb-4"></div>
-                <p class="text-slate-400 italic">"Nội dung tổng hợp từ buổi làm việc..."</p>
+                <p class="text-slate-400 italic text-sm">"Nội dung tổng hợp từ buổi làm việc..."</p>
             </div>`,
-            `<div class="space-y-6">
-                <div class="w-20 h-20 sm:w-24 sm:h-24 bg-emerald-500 rounded-full mx-auto flex items-center justify-center mb-6">
-                    <svg class="w-10 h-10 sm:w-12 sm:h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
+            `<div class="space-y-4 sm:space-y-6">
+                <div class="w-16 h-16 sm:w-24 sm:h-24 bg-[#4a66a0] rounded-full mx-auto flex items-center justify-center mb-4 sm:mb-6 shadow-xl shadow-[#4a66a0]/30">
+                    <svg class="w-8 h-8 sm:w-12 sm:h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
                 </div>
-                <h4 class="text-xl sm:text-2xl font-bold text-white">Check-in/Check-out minh bạch</h4>
-                <p class="text-slate-400 text-sm">Hơn 100 chỗ ngồi cafe đối tác</p>
+                <h4 class="text-lg sm:text-2xl font-bold text-white leading-snug">Check-in/Check-out minh bạch</h4>
+                <p class="text-slate-400 text-xs sm:text-sm">Hơn 100 chỗ ngồi cafe đối tác</p>
             </div>`
         ];
         const display = document.getElementById('step-preview');
