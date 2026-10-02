@@ -297,11 +297,6 @@
             .nav-logo img { width: 32px; height: 32px; }
             .nav-logo-text { font-size: 1rem; }
         }
-        .nav-logo,
-        .nav-logo-text {
-            text-transform: none !important;
-        }
-            .nav-mini { gap: 1rem; }
         }
 
         /* ============================================
@@ -738,22 +733,29 @@
         }
                 /* ===== NAV mới có logo ===== */
         .nav-mini {
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid #edf0f5;
-            padding: 12px 0;
-            width: 100%;
-        }
-        .nav-inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 24px;
-        }
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid #edf0f5;
+    width: 100%;
+    padding: 0 24px;
+}
+.nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 12px 0;
+}
+@media (max-width: 640px) {
+    .nav-mini { padding: 0 16px; }
+    .nav-inner { flex-direction: column; gap: 10px; padding: 10px 0; }
+}
         .nav-logo {
             display: flex;
             align-items: center;
@@ -982,6 +984,44 @@
             .footer-logo-bottom span { font-size: 1.25rem; }
             .footer-links a { font-size: 0.85rem; }
         }
+        .nav-download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--navy);
+    color: #fff !important;
+    padding: 10px 20px;
+    border-radius: 100px;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    text-transform: none !important;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+    box-shadow: 0 6px 18px rgba(27, 43, 122, 0.18);
+}
+.nav-download-btn:hover {
+    background: var(--navy-deep);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba(27, 43, 122, 0.3);
+    color: #fff !important;
+}
+.nav-download-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+.nav-download-btn i {
+    font-size: 0.9rem;
+}
+@media (max-width: 640px) {
+    .nav-download-btn {
+        padding: 8px 16px;
+        font-size: 0.75rem;
+        gap: 6px;
+    }
+    .nav-download-btn i {
+        font-size: 0.8rem;
+    }
+}
     </style>
 </head>
 <body class="antialiased">
@@ -989,17 +1029,24 @@
 <div class="glow-orb w-[400px] h-[400px] bg-[#1B2B7A] top-[-100px] left-[-100px]" style="opacity:0.10;"></div>
 <div class="glow-orb w-[300px] h-[300px] bg-[#7c8ec9] bottom-[-50px] right-[-80px]" style="opacity:0.08;"></div>
 
-<nav class="nav-mini wide-container">
+<nav class="nav-mini">
     <div class="nav-inner">
         <a href="#" class="nav-logo">
             <img src="https://raw.githubusercontent.com/hoangtrucnhi/PopMinutes-PWA/refs/heads/main/launchericon-512x512.png" alt="PopMinutes">
             <span class="nav-logo-text">Pop<span class="text-minutes">Minutes</span></span>
         </a>
         <div class="nav-links">
-            <a href="#features">Nỗi đau</a>
-            <a href="#how">Giải pháp</a>
-            <a href="#pricing">Bảng giá</a>
-        </div>
+    <a href="#features">Nỗi đau</a>
+    <a href="#how">Giải pháp</a>
+    <a href="#pricing">Bảng giá</a>
+    <a href="https://your-app-download-url.com" 
+       target="_blank" 
+       rel="noopener"
+       class="nav-download-btn">
+        <i class="fa-solid fa-download"></i>
+        <span>Tải app</span>
+    </a>
+</div>
     </div>
 </nav>
 
