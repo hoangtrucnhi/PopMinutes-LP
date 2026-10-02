@@ -630,6 +630,62 @@
             margin-left: revert;
             margin-right: revert;
         }
+                /* ===== Newsletter input & button đồng bộ với input-elegant ===== */
+        .newsletter-input {
+            width: 100%;
+            padding: 1.1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-sm);
+            color: #fff;
+            font-family: inherit;
+            font-weight: 500;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s;
+            box-sizing: border-box;
+        }
+        .newsletter-input::placeholder {
+            color: #94a3b8;
+            font-weight: 400;
+        }
+        .newsletter-input:focus {
+            border-color: #2D3FA6;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 4px rgba(45, 63, 166, 0.2);
+        }
+        .newsletter-btn {
+            background: var(--navy);
+            color: #fff;
+            padding: 1.1rem 2rem;
+            border-radius: var(--radius-sm);
+            font-weight: 800;
+            font-size: 0.85rem;
+            letter-spacing: 0.02em;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            white-space: nowrap;
+            transition: all 0.2s;
+            box-shadow: 0 8px 28px rgba(27,43,122,0.18);
+            flex-shrink: 0;
+        }
+        .newsletter-btn:hover:not(:disabled) {
+            background: var(--navy-deep);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(27,43,122,0.3);
+        }
+        .newsletter-btn:active:not(:disabled) {
+            transform: translateY(0) scale(0.98);
+        }
+        .newsletter-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+        @media (max-width: 640px) {
+            .newsletter-btn {
+                padding: 1rem 1.5rem;
+                font-size: 0.8rem;
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -897,9 +953,9 @@
     <div class="wide-container relative z-10 text-center">
         <h2 class="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4 sm:mb-6">Bạn muốn nâng tầm đội ngũ Sales?</h2>
         <p class="text-slate-300 text-sm sm:text-lg mb-10 sm:mb-16 max-w-2xl mx-auto">Đăng ký nhận email để cập nhật tính năng mới nhất từ PopMinutes App và các cẩm nang Sales.</p>
-        <form id="newsletterForm" class="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4 max-w-2xl mx-auto mt-6" novalidate>
-            <input type="email" id="newsletterEmail" placeholder="Nhập địa chỉ email của bạn..." class="flex-1 w-full px-6 sm:px-8 py-4 sm:py-5 rounded-full bg-white/10 border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:border-[#1B2B7A] focus:bg-white/20 transition-all font-medium" required>
-            <button type="submit" id="newsletterSubmitBtn" class="btn-main py-4 sm:py-5 px-8 sm:px-10 text-sm whitespace-nowrap !shadow-none border border-[#2D3FA6]">ĐĂNG KÝ NGAY</button>
+        <form id="newsletterForm" class="flex flex-col sm:flex-row justify-center items-stretch gap-3 sm:gap-4 max-w-2xl mx-auto mt-6" novalidate>
+            <input type="email" id="newsletterEmail" placeholder="Nhập địa chỉ email của bạn..." class="newsletter-input flex-1" required>
+            <button type="submit" id="newsletterSubmitBtn" class="newsletter-btn">ĐĂNG KÝ NGAY</button>
         </form>
     </div>
 </section>
@@ -1151,11 +1207,17 @@
                     </button>
                 </div>
             </div>`,
-            `<div class="space-y-4 sm:space-y-5 text-left px-2 sm:px-6 w-full">
-                <div class="text-emerald-400 font-black text-xs sm:text-sm mb-3 sm:mb-4">TO: sales@pophubly.com</div>
-                <div class="text-white text-base sm:text-xl font-bold mb-2 leading-snug">[PopHubly] Tóm Tắt Buổi Làm Việc...</div>
-                <div class="h-px w-full bg-slate-700 mb-4"></div>
-                <p class="text-slate-400 italic text-sm">"Nội dung tổng hợp từ buổi làm việc..."</p>
+            `<div class="space-y-4 sm:space-y-6">
+                <div class="w-16 h-16 sm:w-24 sm:h-24 bg-[#1B2B7A] rounded-full mx-auto flex items-center justify-center mb-4 sm:mb-6 shadow-xl shadow-[#1B2B7A]/30">
+                    <svg class="w-8 h-8 sm:w-12 sm:h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                </div>
+                <h4 class="text-lg sm:text-2xl font-bold text-white leading-snug">Biên bản tự động gửi đến hộp thư</h4>
+                <div class="bg-white/5 border border-white/10 rounded-xl p-3 sm:p-4 text-left mt-3 sm:mt-4">
+                    <div class="text-[#8ea5d9] font-black text-xs sm:text-sm mb-2">TO: sales@pophubly.com</div>
+                    <div class="text-white text-sm sm:text-base font-bold mb-2 leading-snug">[PopHubly] Tóm Tắt Buổi Làm Việc</div>
+                    <div class="h-px w-full bg-slate-700 mb-2"></div>
+                    <p class="text-slate-400 italic text-xs sm:text-sm">"Nội dung tổng hợp từ buổi làm việc..."</p>
+                </div>
             </div>`,
             `<div class="space-y-4 sm:space-y-6">
                 <div class="w-16 h-16 sm:w-24 sm:h-24 bg-[#1B2B7A] rounded-full mx-auto flex items-center justify-center mb-4 sm:mb-6 shadow-xl shadow-[#1B2B7A]/30">
