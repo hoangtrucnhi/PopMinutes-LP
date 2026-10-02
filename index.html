@@ -67,6 +67,7 @@
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1.2);
             display: inline-flex; align-items: center; gap: 10px;
             box-shadow: 0 8px 28px rgba(74,102,160,0.18); position: relative; overflow: hidden;
+            border: none; cursor: pointer; text-decoration: none;
         }
         .btn-main::after {
             content: ''; position: absolute; inset: 0;
@@ -80,36 +81,26 @@
         .btn-main:hover::after { opacity: 1; }
         .btn-main:active { transform: translateY(0) scale(0.98); transition: all 0.1s; }
         .btn-main:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-            transform: none !important;
-            box-shadow: none !important;
+            opacity: 0.7; cursor: not-allowed; transform: none !important; box-shadow: none !important;
         }
         .btn-main .spinner {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,0.3);
-            border-top-color: #fff;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            margin-right: 6px;
+            display: inline-block; width: 20px; height: 20px;
+            border: 3px solid rgba(255,255,255,0.3); border-top-color: #fff;
+            border-radius: 50%; animation: spin 0.8s linear infinite; margin-right: 6px;
         }
         @keyframes spin { to { transform: rotate(360deg); } }
         .btn-outline {
             display: inline-flex; align-items: center; gap: 10px; font-weight: 800; font-size: 0.95rem;
             letter-spacing: 0.02em; padding: 1.2rem 2.6rem; border-radius: 100px;
             border: 2px solid #e2e8f0; color: #1e293b; transition: all 0.3s;
+            background: transparent; cursor: pointer; text-decoration: none;
         }
         .btn-outline:hover { border-color: var(--popblue); color: var(--popblue); background: rgba(74,102,160,0.03); }
         .wide-container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
         @media (max-width: 768px) {
             .wide-container { padding: 0 20px; }
             .title-bold { letter-spacing: -0.03em; }
-            .nav-mini {
-                background-color: #fff !important;
-                backdrop-filter: none !important;
-            }
+            .nav-mini { background-color: #fff !important; backdrop-filter: none !important; }
             .section-dark { background: #1e293b !important; }
         }
         @keyframes floatCard { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-8px); } }
@@ -119,195 +110,67 @@
             position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.22; pointer-events: none; z-index: 0;
         }
         .input-elegant {
-            width: 100%; padding: 1.1rem 1.5rem;
-            background: #ffffff;
-            border: 1.5px solid #e2e8f0;
-            border-radius: 100px;
+            width: 100%; padding: 1.1rem 1.5rem; background: #ffffff;
+            border: 1.5px solid #e2e8f0; border-radius: 100px;
             outline: none; font-weight: 500; font-size: 0.95rem;
             transition: all 0.3s; color: #1e293b;
         }
-        .input-elegant:focus {
-            border-color: var(--popblue);
-            box-shadow: 0 0 0 4px rgba(74,102,160,0.06);
-        }
+        .input-elegant:focus { border-color: var(--popblue); box-shadow: 0 0 0 4px rgba(74,102,160,0.06); }
         .input-elegant::placeholder { color: #94a3b8; font-weight: 400; }
-        .input-elegant:invalid:not(:placeholder-shown) {
-            border-color: #d1d5db;
-        }
-        .input-elegant:valid:not(:placeholder-shown) {
-            border-color: var(--popblue);
-        }
-        .input-elegant:focus:invalid:not(:placeholder-shown) {
-            border-color: var(--popblue);
-        }
-        .input-elegant::-webkit-validation-bubble-message {
-            display: none;
-        }
-        textarea.input-elegant {
-            border-radius: 24px;
-            resize: vertical;
-        }
-        /* ===== CHECKBOX - CĂN CHỈNH ĐỀU VỚI LABEL, KHÔNG TÔ NỀN ===== */
-        .consent-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 6px;
-        }
+        .input-elegant:invalid:not(:placeholder-shown) { border-color: #d1d5db; }
+        .input-elegant:valid:not(:placeholder-shown) { border-color: var(--popblue); }
+        .input-elegant:focus:invalid:not(:placeholder-shown) { border-color: var(--popblue); }
+        textarea.input-elegant { border-radius: 24px; resize: vertical; }
+        .consent-wrapper { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
         .consent-checkbox {
-            width: 20px;
-            height: 20px;
-            flex-shrink: 0;
-            margin: 0;
-            padding: 0;
-            cursor: pointer;
-            border: 2px solid #cbd5e1 !important;
-            border-radius: 5px;
-            background-color: #ffffff;
-            transition: all 0.2s ease;
-            appearance: none;
-            -webkit-appearance: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            color: var(--popblue);
-            font-size: 16px;
-            font-weight: 700;
+            width: 20px; height: 20px; flex-shrink: 0; margin: 0; padding: 0; cursor: pointer;
+            border: 2px solid #cbd5e1 !important; border-radius: 5px; background-color: #ffffff;
+            transition: all 0.2s ease; appearance: none; -webkit-appearance: none;
+            display: flex; align-items: center; justify-content: center;
+            position: relative; color: var(--popblue); font-size: 16px; font-weight: 700;
         }
-        .consent-checkbox:checked {
-            background-color: #ffffff; /* Không tô nền xanh */
-            border-color: var(--popblue) !important;
-        }
+        .consent-checkbox:checked { background-color: #ffffff; border-color: var(--popblue) !important; }
         .consent-checkbox:checked::before {
-            content: "✓";
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 100%;
-            color: var(--popblue);
+            content: "✓"; display: flex; align-items: center; justify-content: center;
+            width: 100%; height: 100%; color: var(--popblue);
         }
-        .consent-checkbox:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(74, 102, 160, 0.15);
-        }
-        .consent-checkbox:invalid {
-            border-color: #cbd5e1 !important;
-        }
-        .consent-checkbox:invalid:checked {
-            border-color: var(--popblue) !important;
-        }
-        .consent-label {
-            font-size: 0.9rem;
-            color: #475569;
-            font-weight: 500;
-            line-height: 1.5;
-            cursor: pointer;
-            margin: 0;
-            padding: 0;
-        }
-        .consent-link {
-            color: var(--popblue);
-            font-weight: 700;
-            text-decoration: underline;
-            text-underline-offset: 2px;
-            transition: color 0.2s;
-        }
-        .consent-link:hover {
-            color: var(--popblue-deep);
-        }
+        .consent-checkbox:focus { outline: none; box-shadow: 0 0 0 3px rgba(74, 102, 160, 0.15); }
+        .consent-label { font-size: 0.9rem; color: #475569; font-weight: 500; line-height: 1.5; cursor: pointer; margin: 0; padding: 0; }
+        .consent-link { color: var(--popblue); font-weight: 700; text-decoration: underline; text-underline-offset: 2px; transition: color 0.2s; }
+        .consent-link:hover { color: var(--popblue-deep); }
         #step-preview { transition: opacity 0.35s ease, transform 0.35s ease; }
         .label-sm { font-size: 0.8rem; letter-spacing: 0.18em; }
         .label-md { font-size: 0.85rem; letter-spacing: 0.2em; }
         .nav-mini a { font-weight: 500; font-size: 1.125rem; letter-spacing: 0.05em; text-transform: uppercase; }
-        .nav-mini { gap: 2rem; }
+        .nav-mini { gap: 2rem; display: flex; padding: 1rem 2rem; justify-content: center; align-items: center; }
         .modal-overlay { transition: opacity 0.3s ease; }
         .modal-overlay.hidden { opacity: 0; pointer-events: none; }
         .modal-content { transition: opacity 0.3s ease, transform 0.3s ease; opacity: 0; transform: scale(0.9); }
         .modal-overlay:not(.hidden) .modal-content { opacity: 1; transform: scale(1); }
         .media-modal-content {
-            max-width: 90vw;
-            width: 600px;
-            background: white;
-            border-radius: 2rem;
-            padding: 2rem;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
-            transition: inherit;
-            opacity: 0;
-            transform: scale(0.9);
+            max-width: 90vw; width: 600px; background: white; border-radius: 2rem; padding: 2rem;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3); transition: inherit; opacity: 0; transform: scale(0.9);
         }
-        .modal-overlay:not(.hidden) .media-modal-content {
-            opacity: 1;
-            transform: scale(1);
-        }
-        .media-modal-content iframe {
-            width: 100%;
-            height: 70vh;
-            max-height: 600px;
-            border: none;
-            border-radius: 1rem;
-        }
-        .toggle-switch {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            cursor: pointer;
-            gap: 10px;
-        }
-        .toggle-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
+        .modal-overlay:not(.hidden) .media-modal-content { opacity: 1; transform: scale(1); }
+        .media-modal-content iframe { width: 100%; height: 70vh; max-height: 600px; border: none; border-radius: 1rem; }
+        .toggle-switch { position: relative; display: inline-flex; align-items: center; cursor: pointer; gap: 10px; }
+        .toggle-switch input { opacity: 0; width: 0; height: 0; }
         .slider {
-            position: relative;
-            display: inline-block;
-            width: 48px;
-            height: 24px;
-            background-color: #cbd5e1;
-            border-radius: 34px;
-            transition: 0.3s;
+            position: relative; display: inline-block; width: 48px; height: 24px;
+            background-color: #cbd5e1; border-radius: 34px; transition: 0.3s;
         }
         .slider:before {
-            position: absolute;
-            content: "";
-            height: 20px;
-            width: 20px;
-            left: 2px;
-            bottom: 2px;
-            background-color: white;
-            border-radius: 50%;
-            transition: 0.3s;
+            position: absolute; content: ""; height: 20px; width: 20px; left: 2px; bottom: 2px;
+            background-color: white; border-radius: 50%; transition: 0.3s;
         }
-        input:checked + .slider {
-            background-color: var(--popblue);
-        }
-        input:checked + .slider:before {
-            transform: translateX(24px);
-        }
-        .toggle-label {
-            font-weight: 800;
-            font-size: 0.8rem;
-            letter-spacing: 0.02em;
-            color: #ffffff;
-        }
-        .inline-flex {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .free-badge {
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: #0f172a;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .free-badge svg {
-            flex-shrink: 0;
-        }
+        input:checked + .slider { background-color: var(--popblue); }
+        input:checked + .slider:before { transform: translateX(24px); }
+        .toggle-label { font-weight: 800; font-size: 0.8rem; letter-spacing: 0.02em; color: #ffffff; }
+        .inline-flex { display: inline-flex; align-items: center; gap: 8px; }
+        .free-badge { font-weight: 700; font-size: 1.1rem; color: #0f172a; display: flex; align-items: center; gap: 6px; }
+        .free-badge svg { flex-shrink: 0; }
+        /* Fallback cho .reveal khi JS bị tắt */
+        html:not(.js-enabled) .reveal { opacity: 1; transform: none; }
     </style>
 </head>
 <body>
@@ -316,166 +179,220 @@
     <a href="#how">Giải pháp</a>
     <a href="#pricing">Bảng giá</a>
 </nav>
+
 <!-- Hero -->
-<section class="reveal">
-                 Đã có mặt 100+ chỗ ngồi Cafe
-            <h1>
-                Chốt Sales tại quán, <br>Biên bản để AI lo.
-            </h1>
-            <p>
-                Giải pháp toàn diện cho <strong>Team Sales</strong>: Đặt chỗ gặp khách tại mạng lưới Cafe chọn lọc & Tự động ghi chép, gửi email báo cáo cho sếp/khách hàng ngay sau khi đứng dậy.
-            </p>
-                <button onclick="scrollToForm()">
-                    DÙNG THỬ
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                </button>
-                <button onclick="scrollToDemo()">
-                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                    XEM DEMO
-                </button>
-                <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=2000" alt="Sales Meeting tại Cafe">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
-                    Email đã gửi cho Sales/Manager/Khách
-                <p>Tóm tắt buổi làm việc</p>
+<section class="section-white reveal" style="padding: 6rem 0; position: relative; overflow: hidden;">
+    <div class="wide-container" style="position: relative; z-index: 2;">
+        <div class="label-sm" style="color: var(--popblue); font-weight: 800; margin-bottom: 1rem; text-transform: uppercase;">Đã có mặt 100+ chỗ ngồi Cafe</div>
+        <h1 class="title-bold text-gradient" style="font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: 1.5rem;">
+            Chốt Sales tại quán, <br>Biên bản để AI lo.
+        </h1>
+        <p style="font-size: 1.2rem; max-width: 700px; line-height: 1.7; margin-bottom: 2rem;">
+            Giải pháp toàn diện cho <strong>Team Sales</strong>: Đặt chỗ gặp khách tại mạng lưới Cafe chọn lọc & Tự động ghi chép, gửi email báo cáo cho sếp/khách hàng ngay sau khi đứng dậy.
+        </p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem;">
+            <button class="btn-main" onclick="scrollToForm()">
+                DÙNG THỬ
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 20px; height: 20px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </button>
+            <button class="btn-outline" onclick="scrollToDemo()">
+                <svg fill="currentColor" viewBox="0 0 24 24" style="width: 20px; height: 20px;"><path d="M8 5v14l11-7z"/></svg>
+                XEM DEMO
+            </button>
+        </div>
+        <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=2000" alt="Sales Meeting tại Cafe" style="width: 100%; border-radius: 2rem; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+        <div style="margin-top: 2rem; display: flex; align-items: center; gap: 10px; color: #10B981; font-weight: 700;">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 24px; height: 24px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+            Email đã gửi cho Sales/Manager/Khách
+        </div>
+        <p style="margin-top: 0.5rem; font-weight: 600; color: #64748b;">Tóm tắt buổi làm việc</p>
+    </div>
 </section>
+
 <!-- Features -->
-<section id="features" class="reveal">
-            Tại sao chọn PopMinutes
-            <h2>
-                Đừng để buổi gặp khách chỉ là <br>một buổi nói chuyện rồi quên.
-            </h2>
-            <p>Ba vấn đề lớn nhất của sales khi gặp khách ngoài văn phòng – và cách PopMinutes giải quyết triệt để.</p>
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                <h3>Quán ồn, hết chỗ,<br>chỗ ngồi không chuyên nghiệp</h3>
-                <p>Bạn đến chỗ hẹn nhưng quán hết chỗ, hay quán quá ồn? <strong>Hệ sinh thái</strong> quán đối tác được chọn lọc theo tiêu chuẩn, cam kết không gian phù hợp gặp khách – đối tác nhìn bạn chuyên nghiệp ngay từ phút đầu.</p>
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
-                <h3>Ghi chú bằng tay,<br>tự nhớ, sót nội dung quan trọng</h3>
-                <p>Khách nói cần báo giá trước thứ Sáu để kịp duyệt – bạn có nhớ? <strong>PopMinutes AI</strong> bắt trọn từng câu, biến thành biên bản chuẩn xác. Mọi thông tin quan trọng mà bạn có thể bỏ sót đều được tóm tắt đầy đủ.</p>
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                <h3>Kết thúc họp,<br>quên follow‑up ngay</h3>
-                <p>Bạn vừa rời quán, trên đường trở về công ty, tóm tắt đã gửi đến email cá nhân và sếp/khách (tùy chọn). Không cần phải nhớ follow‑up. Tiết kiệm thời gian để chuẩn bị cho buổi gặp khác.</p>
+<section id="features" class="section-light reveal" style="padding: 6rem 0;">
+    <div class="wide-container">
+        <div class="label-sm" style="color: var(--popblue); font-weight: 800; margin-bottom: 1rem; text-transform: uppercase;">Tại sao chọn PopMinutes</div>
+        <h2 class="title-bold text-gradient" style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem;">
+            Đừng để buổi gặp khách chỉ là <br>một buổi nói chuyện rồi quên.
+        </h2>
+        <p style="font-size: 1.1rem; max-width: 600px; line-height: 1.7; margin-bottom: 3rem;">
+            Ba vấn đề lớn nhất của sales khi gặp khách ngoài văn phòng – và cách PopMinutes giải quyết triệt để.
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+            <div style="background: #fff; padding: 2rem; border-radius: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #edf0f5;">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 40px; height: 40px; color: var(--popblue); margin-bottom: 1rem;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 0.75rem;">Quán ồn, hết chỗ,<br>chỗ ngồi không chuyên nghiệp</h3>
+                <p style="color: #475569; line-height: 1.6;">Bạn đến chỗ hẹn nhưng quán hết chỗ, hay quán quá ồn? <strong>Hệ sinh thái</strong> quán đối tác được chọn lọc theo tiêu chuẩn, cam kết không gian phù hợp gặp khách – đối tác nhìn bạn chuyên nghiệp ngay từ phút đầu.</p>
+            </div>
+            <div style="background: #fff; padding: 2rem; border-radius: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #edf0f5;">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 40px; height: 40px; color: var(--popblue); margin-bottom: 1rem;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+                <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 0.75rem;">Ghi chú bằng tay,<br>tự nhớ, sót nội dung quan trọng</h3>
+                <p style="color: #475569; line-height: 1.6;">Khách nói cần báo giá trước thứ Sáu để kịp duyệt – bạn có nhớ? <strong>PopMinutes AI</strong> bắt trọn từng câu, biến thành biên bản chuẩn xác. Mọi thông tin quan trọng mà bạn có thể bỏ sót đều được tóm tắt đầy đủ.</p>
+            </div>
+            <div style="background: #fff; padding: 2rem; border-radius: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #edf0f5;">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 40px; height: 40px; color: var(--popblue); margin-bottom: 1rem;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 0.75rem;">Kết thúc họp,<br>quên follow‑up ngay</h3>
+                <p style="color: #475569; line-height: 1.6;">Bạn vừa rời quán, trên đường trở về công ty, tóm tắt đã gửi đến email cá nhân và sếp/khách (tùy chọn). Không cần phải nhớ follow‑up. Tiết kiệm thời gian để chuẩn bị cho buổi gặp khác.</p>
+            </div>
+        </div>
+    </div>
 </section>
+
 <!-- Solutions -->
-<section id="how" class="reveal">
-        <h2>Các giải pháp trong PopMinutes App</h2>
-                    Giải pháp 01
-                    <h3>AI chuyển toàn bộ file ghi âm thành biên bản</h3>
-                    <p>Kèm theo <strong>toàn bộ đoạn hội thoại</strong> được chuyển thành văn bản, rõ từng người nói.</p>
-                    Giải pháp 02
-                    <h3>Nhận biên bản tức thì qua email</h3>
-                    <p>Sau khi buổi họp kết thúc, biên bản tự động gửi đến bạn, sếp và khách hàng.</p>
-                    Giải pháp 03
-                    <h3>Linh hoạt sử dụng chỗ ngồi tại quán cafe chọn lọc</h3>
-                    <p>Hệ thống <strong>quán</strong> với app check-in/check-out minh bạch.</p>
+<section id="how" class="section-white reveal" style="padding: 6rem 0;">
+    <div class="wide-container">
+        <h2 class="title-bold text-gradient" style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 3rem;">Các giải pháp trong PopMinutes App</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+            <div>
+                <div class="label-md" style="color: var(--popblue); font-weight: 800; margin-bottom: 0.5rem; text-transform: uppercase;">Giải pháp 01</div>
+                <h3 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 0.75rem;">AI chuyển toàn bộ file ghi âm thành biên bản</h3>
+                <p style="color: #475569; line-height: 1.6;">Kèm theo <strong>toàn bộ đoạn hội thoại</strong> được chuyển thành văn bản, rõ từng người nói.</p>
+            </div>
+            <div>
+                <div class="label-md" style="color: var(--popblue); font-weight: 800; margin-bottom: 0.5rem; text-transform: uppercase;">Giải pháp 02</div>
+                <h3 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 0.75rem;">Nhận biên bản tức thì qua email</h3>
+                <p style="color: #475569; line-height: 1.6;">Sau khi buổi họp kết thúc, biên bản tự động gửi đến bạn, sếp và khách hàng.</p>
+            </div>
+            <div>
+                <div class="label-md" style="color: var(--popblue); font-weight: 800; margin-bottom: 0.5rem; text-transform: uppercase;">Giải pháp 03</div>
+                <h3 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 0.75rem;">Linh hoạt sử dụng chỗ ngồi tại quán cafe chọn lọc</h3>
+                <p style="color: #475569; line-height: 1.6;">Hệ thống <strong>quán</strong> với app check-in/check-out minh bạch.</p>
+            </div>
+        </div>
+    </div>
 </section>
+
 <!-- Pricing -->
-<section id="pricing" class="reveal">
-            Bảng giá chi tiết
-            <h2>Đầu tư vào sự Hiệu quả</h2>
-            <p>Không phí khởi tạo. Chọn gói phù hợp với quy mô.</p>
+<section id="pricing" class="section-light reveal" style="padding: 6rem 0;">
+    <div class="wide-container">
+        <div class="label-sm" style="color: var(--popblue); font-weight: 800; margin-bottom: 1rem; text-transform: uppercase;">Bảng giá chi tiết</div>
+        <h2 class="title-bold text-gradient" style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem;">Đầu tư vào sự Hiệu quả</h2>
+        <p style="font-size: 1.1rem; max-width: 600px; line-height: 1.7; margin-bottom: 3rem;">Không phí khởi tạo. Chọn gói phù hợp với quy mô.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
             <!-- Gói TRẢI NGHIỆM -->
-                    <h4>Trải nghiệm</h4>
-                    <label>
-                        3 tháng
-                        <input type="checkbox" id="planToggle">
-                    </label>
-                    Trải nghiệm 14 ngày đầu tiên với giá 0đ.<br>
-                    Không cần thẻ tín dụng.
-                    319k / tháng
-                (thanh toán 807k cho 3 tháng)
-                Sales độc lập
-                <ul>
-                    <li>• Tối đa 1 tài khoản</li>
-                    <li>• PopMinutes AI bản chuẩn không giới hạn</li>
-                    <li>• 0 giờ sử dụng chỗ ngồi tại quán cafe trong hệ thống PopHubly</li>
+            <div style="background: #fff; padding: 2rem; border-radius: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #edf0f5; display: flex; flex-direction: column;">
+                <h4 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 0.5rem;">Trải nghiệm</h4>
+                <label class="toggle-switch" style="margin-bottom: 1rem;">
+                    <span style="font-size: 0.9rem; font-weight: 600; color: #475569;">3 tháng</span>
+                    <input type="checkbox" id="planToggle">
+                    <span class="slider"></span>
+                </label>
+                <p style="color: #475569; font-size: 0.9rem; margin-bottom: 1rem;">Trải nghiệm 14 ngày đầu tiên với giá 0đ.<br>Không cần thẻ tín dụng.</p>
+                <div style="font-size: 2rem; font-weight: 900; color: var(--popblue); margin-bottom: 0.5rem;">319k <span style="font-size: 1rem; font-weight: 500; color: #64748b;">/ tháng</span></div>
+                <div style="font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem;">(thanh toán 807k cho 3 tháng)</div>
+                <div style="font-weight: 700; margin-bottom: 1rem;">Sales độc lập</div>
+                <ul style="list-style: none; padding: 0; margin: 0 0 2rem 0; flex-grow: 1;">
+                    <li style="margin-bottom: 0.5rem; color: #475569;">• Tối đa 1 tài khoản</li>
+                    <li style="margin-bottom: 0.5rem; color: #475569;">• PopMinutes AI bản chuẩn không giới hạn</li>
+                    <li style="margin-bottom: 0.5rem; color: #475569;">• 0 giờ sử dụng chỗ ngồi tại quán cafe trong hệ thống PopHubly</li>
                 </ul>
-                <button onclick="scrollToForm()">DÙNG THỬ 14 NGÀY MIỄN PHÍ</button>
+                <button class="btn-main" onclick="scrollToForm()" style="justify-content: center; width: 100%;">DÙNG THỬ 14 NGÀY MIỄN PHÍ</button>
+            </div>
             <!-- Đội nhóm -->
-                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg> PHỔ BIẾN
-                <h4>Đội nhóm</h4>
-                2.790k / tháng
-                Đội kinh doanh
-                <ul>
-                    <li>• Tối đa 10 tài khoản</li>
-                    <li>• PopMinutes AI bản chuẩn không giới hạn</li>
-                    <li>• 100 giờ sử dụng chỗ ngồi tại quán cafe trong hệ thống PopHubly</li>
-                    <li>• Quản trị Geofencing (GPS)</li>
-                    <li>• Giảm 10% hóa đơn cafe</li>
-                    <li>• Xuất hóa đơn</li>
+            <div style="background: #fff; padding: 2rem; border-radius: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #edf0f5; display: flex; flex-direction: column; position: relative; border: 2px solid var(--popblue);">
+                <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--popblue); color: #fff; padding: 4px 16px; border-radius: 100px; font-size: 0.75rem; font-weight: 800; display: flex; align-items: center; gap: 4px;">
+                    <svg fill="currentColor" viewBox="0 0 20 20" style="width: 14px; height: 14px;"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg> PHỔ BIẾN
+                </div>
+                <h4 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 0.5rem; margin-top: 0.5rem;">Đội nhóm</h4>
+                <div style="font-size: 2rem; font-weight: 900; color: var(--popblue); margin-bottom: 0.5rem;">2.790k <span style="font-size: 1rem; font-weight: 500; color: #64748b;">/ tháng</span></div>
+                <div style="font-weight: 700; margin-bottom: 1rem;">Đội kinh doanh</div>
+                <ul style="list-style: none; padding: 0; margin: 0 0 2rem 0; flex-grow: 1;">
+                    <li style="margin-bottom: 0.5rem; color: #475569;">• Tối đa 10 tài khoản</li>
+                    <li style="margin-bottom: 0.5rem; color: #475569;">• PopMinutes AI bản chuẩn không giới hạn</li>
+                    <li style="margin-bottom: 0.5rem; color: #475569;">• 100 giờ sử dụng chỗ ngồi tại quán cafe trong hệ thống PopHubly</li>
+                    <li style="margin-bottom: 0.5rem; color: #475569;">• Quản trị Geofencing (GPS)</li>
+                    <li style="margin-bottom: 0.5rem; color: #475569;">• Giảm 10% hóa đơn cafe</li>
+                    <li style="margin-bottom: 0.5rem; color: #475569;">• Xuất hóa đơn</li>
                 </ul>
-                <button onclick="openPricingModal('Đội nhóm')">MUA NGAY</button>
+                <button class="btn-main" onclick="openPricingModal('Đội nhóm')" style="justify-content: center; width: 100%;">MUA NGAY</button>
+            </div>
             <!-- Doanh nghiệp -->
-                <h4>Doanh nghiệp</h4>
-                8.090k / tháng
-                Phòng kinh doanh
-                <ul>
-                    <li>• Tối đa 30 tài khoản</li>
-                    <li>• PopMinutes AI bản chuẩn không giới hạn</li>
-                    <li>• 320 giờ sử dụng chỗ ngồi tại quán cafe trong hệ thống PopHubly</li>
-                    <li>• Lưu lịch sử 6 tháng</li>
-                    <li>• Phân quyền chuyên sâu</li>
-                    <li>• Quản trị Geofencing (GPS)</li>
-                    <li>• Giảm 15% hóa đơn cafe</li>
-                    <li>• Xuất hóa đơn</li>
+            <div style="background: #fff; padding: 2rem; border-radius: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #edf0f5; display: flex; flex-direction: column;">
+                <h4 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 0.5rem;">Doanh nghiệp</h4>
+                <div style="font-size: 2rem; font-weight: 900; color: var(--popblue); margin-bottom: 0.5rem;">8.090k <span style="font-size: 1rem; font-weight: 500; color: #64748b;">/ tháng</span></div>
+                <div style="font-weight: 700; margin-bottom: 1rem;">Phòng kinh doanh</div>
+                <ul style="list-style: none; padding: 0; margin: 0 0 2rem 0; flex-grow: 1;">
+                    <li style="margin-bottom: 0.5rem; color: #475569;">• Tối đa 30 tài khoản</li>
+                    <li style="margin-bottom: 0.5rem; color: #475569;">• PopMinutes AI bản chuẩn không giới hạn</li>
+                    <li style="margin-bottom: 0.5rem; color: #475569;">• 320 giờ sử dụng chỗ ngồi tại quán cafe trong hệ thống PopHubly</li>
+                    <li style="margin-bottom: 0.5rem; color: #475569;">• Lưu lịch sử 6 tháng</li>
+                    <li style="margin-bottom: 0.5rem; color: #475569;">• Phân quyền chuyên sâu</li>
+                    <li style="margin-bottom: 0.5rem; color: #475569;">• Quản trị Geofencing (GPS)</li>
+                    <li style="margin-bottom: 0.5rem; color: #475569;">• Giảm 15% hóa đơn cafe</li>
+                    <li style="margin-bottom: 0.5rem; color: #475569;">• Xuất hóa đơn</li>
                 </ul>
-                <button onclick="openPricingModal('Doanh nghiệp')">MUA NGAY</button>
+                <button class="btn-main" onclick="openPricingModal('Doanh nghiệp')" style="justify-content: center; width: 100%;">MUA NGAY</button>
+            </div>
             <!-- Cao cấp -->
-                <h4>Cao cấp</h4>
-                Liên hệ
-                Phòng kinh doanh
-                <ul>
-                    <li>• Không giới hạn tài khoản</li>
-                    <li>• PopMinutes AI bản nâng cao không giới hạn</li>
-                    <li>• Giờ sử dụng chỗ ngồi tại quán cafe trong hệ thống tùy chỉnh</li>
-                    <li>• Lưu lịch sử vĩnh viễn</li>
-                    <li>• Phân quyền chuyên sâu</li>
-                    <li>• Quản trị Geofencing (GPS)</li>
-                    <li>• Dashboard báo cáo</li>
-                    <li>• Giảm 15% hóa đơn cafe</li>
-                    <li>• Xuất hóa đơn</li>
+            <div style="background: #fff; padding: 2rem; border-radius: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #edf0f5; display: flex; flex-direction: column;">
+                <h4 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 0.5rem;">Cao cấp</h4>
+                <div style="font-size: 2rem; font-weight: 900; color: var(--popblue); margin-bottom: 0.5rem;">Liên hệ</div>
+                <div style="font-weight: 700; margin-bottom: 1rem;">Phòng kinh doanh</div>
+                <ul style="list-style: none; padding: 0; margin: 0 0 2rem 0; flex-grow: 1;">
+                    <li style="margin-bottom: 0.5rem; color: #475569;">• Không giới hạn tài khoản</li>
+                    <li style="margin-bottom: 0.5rem; color: #475569;">• PopMinutes AI bản nâng cao không giới hạn</li>
+                    <li style="margin-bottom: 0.5rem; color: #475569;">• Giờ sử dụng chỗ ngồi tại quán cafe trong hệ thống tùy chỉnh</li>
+                    <li style="margin-bottom: 0.5rem; color: #475569;">• Lưu lịch sử vĩnh viễn</li>
+                    <li style="margin-bottom: 0.5rem; color: #475569;">• Phân quyền chuyên sâu</li>
+                    <li style="margin-bottom: 0.5rem; color: #475569;">• Quản trị Geofencing (GPS)</li>
+                    <li style="margin-bottom: 0.5rem; color: #475569;">• Dashboard báo cáo</li>
+                    <li style="margin-bottom: 0.5rem; color: #475569;">• Giảm 15% hóa đơn cafe</li>
+                    <li style="margin-bottom: 0.5rem; color: #475569;">• Xuất hóa đơn</li>
                 </ul>
-                <button onclick="openPricingModal('Cao cấp')">LIÊN HỆ NGAY</button>
+                <button class="btn-main" onclick="openPricingModal('Cao cấp')" style="justify-content: center; width: 100%;">LIÊN HỆ NGAY</button>
+            </div>
+        </div>
+    </div>
 </section>
+
 <!-- CTA Form -->
-<section id="ctaSection" class="reveal">
-                <h2>Sẵn sàng để<br>tăng trưởng 3.7x doanh số?</h2>
-                <p>
-                    Để lại thông tin của bạn. Đội ngũ <strong>PopHubly</strong> sẽ liên hệ để setup bản Demo miễn phí và tặng bạn voucher trải nghiệm PopMinutes AI đầu tiên.
-                </p>
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                    Miễn phí — không cần thẻ tín dụng
-            <form id="ctaForm" novalidate>
-                <input type="text" id="ctaName" placeholder="Họ và tên của bạn *" required>
-                <input type="email" id="ctaEmail" placeholder="Email công việc *" required>
-                <input type="tel" id="ctaPhone" placeholder="Số điện thoại của bạn *" required pattern="[0-9]*" inputmode="numeric" oninvalid="this.setCustomValidity('Số điện thoại không đúng')" oninput="this.setCustomValidity('')">
-                <textarea id="ctaNote" placeholder="Ghi chú thêm cho chúng tôi..." rows="4"></textarea>
-                <input type="hidden" id="ctaRef" name="ref" value="">
-                <!-- CHECKBOX ĐỒNG Ý ĐIỀU KHOẢN - CĂN CHỈNH ĐỀU, KHÔNG TÔ NỀN -->
-                    <input type="checkbox" id="ctaConsent" name="consent" required oninvalid="this.setCustomValidity('Vui lòng đồng ý với Chính sách bảo mật và Điều khoản sử dụng trước khi đăng ký.')" oninput="this.setCustomValidity('')">
-                    <label for="ctaConsent">
-                        Tôi đồng ý với 
-                        <a href="https://pophubly.com/pophubly-privacy-policy/" target="_blank">Chính sách bảo mật</a> 
-                        và 
-                        <a href="https://pophubly.com/term-of-use/" target="_blank">Điều khoản sử dụng</a> 
-                        .
-                    </label>
-                <button type="submit" id="ctaSubmitBtn">
-                    DÙNG THỬ 14 NGÀY
-                </button>
-            </form>
-</section>
-<!-- Newsletter Form -->
-<section class="reveal">
-        <h2>Bạn muốn nâng tầm đội ngũ Sales?</h2>
-        <p>Đăng ký nhận email để cập nhật tính năng mới nhất từ PopMinutes App và các cẩm nang Sales.</p>
-        <form id="newsletterForm" novalidate>
-            <input type="email" id="newsletterEmail" placeholder="Nhập địa chỉ email của bạn..." required>
-            <button type="submit" id="newsletterSubmitBtn">ĐĂNG KÝ NGAY</button>
+<section id="ctaSection" class="section-dark reveal" style="padding: 6rem 0;">
+    <div class="wide-container">
+        <h2 class="title-bold text-gradient-light" style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem;">Sẵn sàng để<br>tăng trưởng 3.7x doanh số?</h2>
+        <p style="font-size: 1.1rem; max-width: 600px; line-height: 1.7; margin-bottom: 2rem; color: #cbd5e1;">
+            Để lại thông tin của bạn. Đội ngũ <strong>PopHubly</strong> sẽ liên hệ để setup bản Demo miễn phí và tặng bạn voucher trải nghiệm PopMinutes AI đầu tiên.
+        </p>
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 2rem; color: #10B981; font-weight: 700;">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 24px; height: 24px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Miễn phí — không cần thẻ tín dụng
+        </div>
+        <form id="ctaForm" novalidate style="max-width: 600px; display: flex; flex-direction: column; gap: 1rem;">
+            <input type="text" id="ctaName" name="name" placeholder="Họ và tên của bạn *" required class="input-elegant">
+            <input type="email" id="ctaEmail" name="email" placeholder="Email công việc *" required class="input-elegant">
+            <input type="tel" id="ctaPhone" name="phone" placeholder="Số điện thoại của bạn *" required pattern="[0-9]*" inputmode="numeric" oninvalid="this.setCustomValidity('Số điện thoại không đúng')" oninput="this.setCustomValidity('')" class="input-elegant">
+            <textarea id="ctaNote" name="note" placeholder="Ghi chú thêm cho chúng tôi..." rows="4" class="input-elegant"></textarea>
+            <input type="hidden" id="ctaRef" name="ref" value="">
+            <div class="consent-wrapper">
+                <input type="checkbox" id="ctaConsent" name="consent" required class="consent-checkbox" oninvalid="this.setCustomValidity('Vui lòng đồng ý với Chính sách bảo mật và Điều khoản sử dụng trước khi đăng ký.')" oninput="this.setCustomValidity('')">
+                <label for="ctaConsent" class="consent-label">
+                    Tôi đồng ý với 
+                    <a href="https://pophubly.com/pophubly-privacy-policy/" target="_blank" class="consent-link">Chính sách bảo mật</a> 
+                    và 
+                    <a href="https://pophubly.com/term-of-use/" target="_blank" class="consent-link">Điều khoản sử dụng</a>.
+                </label>
+            </div>
+            <button type="submit" id="ctaSubmitBtn" class="btn-main" style="justify-content: center; margin-top: 0.5rem;">DÙNG THỬ 14 NGÀY</button>
         </form>
+    </div>
 </section>
-<footer>
+
+<!-- Newsletter Form -->
+<section class="section-white reveal" style="padding: 6rem 0;">
+    <div class="wide-container">
+        <h2 class="title-bold text-gradient" style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem;">Bạn muốn nâng tầm đội ngũ Sales?</h2>
+        <p style="font-size: 1.1rem; max-width: 600px; line-height: 1.7; margin-bottom: 2rem;">Đăng ký nhận email để cập nhật tính năng mới nhất từ PopMinutes App và các cẩm nang Sales.</p>
+        <form id="newsletterForm" novalidate style="max-width: 600px; display: flex; flex-direction: column; gap: 1rem;">
+            <input type="email" id="newsletterEmail" name="email" placeholder="Nhập địa chỉ email của bạn..." required class="input-elegant">
+            <button type="submit" id="newsletterSubmitBtn" class="btn-main" style="justify-content: center;">ĐĂNG KÝ NGAY</button>
+        </form>
+    </div>
+</section>
+
+<footer style="text-align: center; padding: 2rem; color: #64748b; font-size: 0.9rem;">
     &copy; 2026 POPHUBLY ECOSYSTEM &bull; POPMINUTES.AI
 </footer>
+
 <!-- Success Modal -->
 <div id="successModal" class="modal-overlay hidden" style="position:fixed; inset:0; background:rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center; z-index:9999;">
     <div class="modal-content" style="background:#fff; padding:2rem; border-radius:1.5rem; max-width:400px; text-align:center;">
@@ -491,20 +408,20 @@
     <div class="modal-content" style="background:#fff; padding:2rem; border-radius:1.5rem; max-width:500px; width:90%;">
         <h3 style="font-size:1.5rem; font-weight:800; margin-bottom:1rem;">Đăng ký gói dịch vụ</h3>
         <form id="pricingForm" novalidate style="display:flex; flex-direction:column; gap:10px;">
-            <input type="text" id="pricingName" placeholder="Họ và tên *" required class="input-elegant">
-            <input type="email" id="pricingEmail" placeholder="Email *" required class="input-elegant">
-            <input type="tel" id="pricingPhone" placeholder="Số điện thoại *" required pattern="[0-9]*" inputmode="numeric" class="input-elegant">
-            <input type="text" id="pricingCompany" placeholder="Công ty" class="input-elegant">
-            <input type="text" id="pricingScale" placeholder="Số lượng sales" class="input-elegant">
-            <select id="pricingPackage" required class="input-elegant" style="appearance:none;">
+            <input type="text" id="pricingName" name="name" placeholder="Họ và tên *" required class="input-elegant">
+            <input type="email" id="pricingEmail" name="email" placeholder="Email *" required class="input-elegant">
+            <input type="tel" id="pricingPhone" name="phone" placeholder="Số điện thoại *" required pattern="[0-9]*" inputmode="numeric" class="input-elegant">
+            <input type="text" id="pricingCompany" name="company" placeholder="Công ty" class="input-elegant">
+            <input type="text" id="pricingScale" name="scale" placeholder="Số lượng sales" class="input-elegant">
+            <select id="pricingPackage" name="package" required class="input-elegant" style="appearance:none;">
                 <option value="" disabled selected>Chọn gói mong muốn</option>
                 <option value="Đội nhóm">Đội nhóm</option>
                 <option value="Doanh nghiệp">Doanh nghiệp</option>
                 <option value="Cao cấp">Cao cấp</option>
             </select>
-            <div style="display:flex; align-items:center; gap:10px; margin-top:5px;">
-                <input type="checkbox" id="pricingConsent" name="consent" required style="width:20px; height:20px;">
-                <label for="pricingConsent" style="font-size:0.85rem; color:#475569;">Tôi đồng ý với <a href="https://pophubly.com/pophubly-privacy-policy/" target="_blank" style="color:var(--popblue); font-weight:700;">Chính sách bảo mật</a> và <a href="https://pophubly.com/term-of-use/" target="_blank" style="color:var(--popblue); font-weight:700;">Điều khoản sử dụng</a>.</label>
+            <div class="consent-wrapper">
+                <input type="checkbox" id="pricingConsent" name="consent" required class="consent-checkbox">
+                <label for="pricingConsent" class="consent-label">Tôi đồng ý với <a href="https://pophubly.com/pophubly-privacy-policy/" target="_blank" class="consent-link">Chính sách bảo mật</a> và <a href="https://pophubly.com/term-of-use/" target="_blank" class="consent-link">Điều khoản sử dụng</a>.</label>
             </div>
             <button type="submit" id="pricingSubmitBtn" class="btn-main" style="justify-content:center; margin-top:10px;">GỬI ĐĂNG KÝ</button>
         </form>
@@ -540,11 +457,14 @@
         <iframe src="https://docs.google.com/document/d/1N9PJ8FxBhkOYXHG85ryXwCxdx0PjboBZFjSqGrLdcDI/preview" style="width:100%; height:70vh; border:none; border-radius:1rem;"></iframe>
     </div>
 </div>
+
 <script>
+    // Thêm class js-enabled để kích hoạt fallback cho .reveal
+    document.documentElement.classList.add('js-enabled');
+
     // ==========================================
     // 1. CẤU HÌNH LINK GAS CỦA CẬU
     // ==========================================
-    // Thay thế link dưới đây bằng link Web App URL từ Google Apps Script của cậu
     const GAS_URL = "https://script.google.com/macros/s/AKfycbxrYkvMg1JxGCzuPzdpUaBYIrqZu6DyX2Qh0IXV49OYhAaCb6NHBY9BZFmdBBxLe65i/exec"; 
 
     // ==========================================
@@ -570,7 +490,7 @@
     }
 
     function scrollToDemo() {
-        openAudioModal(); // Mở modal audio khi bấm XEM DEMO
+        openAudioModal();
     }
 
     // ==========================================
@@ -581,7 +501,7 @@
         if (modal) {
             modal.classList.remove("hidden");
             const select = document.getElementById("pricingPackage");
-            if (select) select.value = planName; // Tự động chọn gói
+            if (select) select.value = planName;
         }
     }
 
@@ -618,7 +538,6 @@
         document.getElementById("successModal")?.classList.add("hidden");
     });
 
-    // Đóng modal khi click ra ngoài vùng nội dung
     document.querySelectorAll('.modal-overlay').forEach(overlay => {
         overlay.addEventListener('click', function(e) {
             if (e.target === this) {
@@ -637,31 +556,26 @@
         if (!form || !btn) return;
 
         form.addEventListener("submit", async function(e) {
-            e.preventDefault(); // Chặn reload trang
+            e.preventDefault();
             
-            // Kiểm tra validation của HTML5
             if (!form.checkValidity()) {
                 form.reportValidity();
                 return;
             }
 
-            // Đổi trạng thái nút thành Loading
             const originalText = btn.innerHTML;
             btn.disabled = true;
             btn.innerHTML = '<span class="spinner"></span> Đang gửi...';
 
-            // Thu thập dữ liệu form và thêm source
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
-            data.source = sourceName; // Gán source để GAS phân loại
+            data.source = sourceName;
 
-            // Xử lý riêng cho form Pricing (map các trường)
             if (formId === "pricingForm") {
                 data.note = `Gói: ${data.package || ''} | Công ty: ${data.company || ''} | Số Sales: ${data.scale || ''}`;
             }
 
             try {
-                // Gửi dữ liệu đến GAS (Dùng text/plain để tránh lỗi CORS preflight)
                 const response = await fetch(GAS_URL, {
                     method: "POST",
                     body: JSON.stringify(data),
@@ -672,7 +586,7 @@
                 
                 if (result.result === "success" || response.ok) {
                     showSuccessModal("Thành công", successMessage);
-                    form.reset(); // Xóa trắng form
+                    form.reset();
                 } else {
                     showSuccessModal("Lỗi", result.message || "Có lỗi xảy ra, vui lòng thử lại.");
                 }
@@ -680,21 +594,14 @@
                 console.error("Lỗi gửi form:", error);
                 showSuccessModal("Lỗi kết nối", "Không thể kết nối đến máy chủ. Vui lòng kiểm tra mạng.");
             } finally {
-                // Khôi phục trạng thái nút
                 btn.disabled = false;
                 btn.innerHTML = originalText;
             }
         });
     }
 
-    // Kích hoạt các form
-    // Form CTA (Source: "CTA")
     submitFormToGAS("ctaForm", "ctaSubmitBtn", "CTA", "Cảm ơn bạn! Đội ngũ PopHubly sẽ liên hệ trong thời gian sớm nhất.");
-    
-    // Form Newsletter (Source: "NEWSLETTER")
     submitFormToGAS("newsletterForm", "newsletterSubmitBtn", "NEWSLETTER", "Đăng ký nhận tin thành công!");
-    
-    // Form Pricing (Source: "PRICING")
     submitFormToGAS("pricingForm", "pricingSubmitBtn", "PRICING", "Đăng ký gói dịch vụ thành công! Chúng tôi sẽ liên hệ để xác nhận.");
 </script>
 </body>
